@@ -52,7 +52,7 @@ class WCPCore
         wp_enqueue_style('wcp-style');
 
         // JS
-        wp_register_script('vip-main-js', VIP_PLUGIN_URL . '/assets/js/front/main.js', ['jquery'], '1.0.0', true);
+        wp_register_script('vip-main-js', WCP_PLUGIN_URL . '/assets/js/front/main.js', ['jquery'], '1.0.0', true);
         wp_enqueue_script('vip-main-js');
     }
     public function wp_wcp_register_assets_admin()
@@ -60,6 +60,7 @@ class WCPCore
     }
     public function wp_wcp_activation()
     {
+        $this->create_course_template_file();
     }
     public function wp_wcp_deactivation()
     {
@@ -73,6 +74,17 @@ class WCPCore
         if (!function_exists('jdate')) {
             include_once WCP_PLUGIN_DIR . '_lib/jdf.php';
         } else {
+        }
+    }
+    public function create_course_template_file()
+    {
+        $theme_directory_path = get_template_directory();
+        $file_name = 'course-template.php';
+        $flie_contents = '<?php /* Template Name: دوره های آموزشی */ ?>' . PHP_EOL . '<?php get_header(); ?>' . PHP_EOL . '<?php get_footer(); ?>';
+        if (!is_file($file_name && !file_exists($file_name))) {
+            $create_file = fopen($theme_directory_path . '/' . $file_name, 'w+');
+            fwrite($create_file, $flie_contents);
+            fclose($create_file);
         }
     }
 }
