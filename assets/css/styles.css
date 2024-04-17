@@ -29,7 +29,7 @@
 @import url(plugins/ion.rangeSlider.min.css);
 @import url(plugins/magnifypopup.css);
 @import url(plugins/select2.css);
-@import url(plugins/slick.css);
+@import url(./plugins/slick.css);
 @import url(plugins/slick-theme.css);
 @import url(plugins/themify.css);
 @import url(plugins/morris.css);
