@@ -9,7 +9,7 @@ function course_page()
 ?>
 
     <!-- ============================ Page Title Start================================== -->
-  <?php include WCP_PLUGIN_VIEW . 'front/course-page/_header.php' ?>
+    <?php include WCP_PLUGIN_VIEW . 'front/course-page/_header.php' ?>
     <!-- ============================ Page Title End ================================== -->
 
     <!-- ============================ Course Detail ================================== -->
@@ -20,18 +20,9 @@ function course_page()
                 <div class="col-lg-8 col-md-8">
                     <div class="property_video xl">
                         <!-- _start thumbanil -->
-                        <div class="thumb">
-                            <img class="pro_img img-fluid w100" src="assets/img/banner-5.jpg" alt="7.jpg" />
-                            <div class="overlay_icon">
-                                <div class="bb-video-box">
-                                    <div class="bb-video-box-inner">
-                                        <div class="bb-video-box-innerup">
-                                            <a href="https://www.aparat.com/video/video/embed/videohash/cNpW0/vt/frame" data-toggle="modal" data-target="#popup-video" class="theme-cl"><i class="ti-control-play"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <video width="100%" height="auto" controls>
+                            <source src="<?php echo $course->c_demo ?>" type="video/mp4">
+                        </video>
 
                         <div class="instructor_over_info">
                             <ul>
@@ -75,32 +66,7 @@ function course_page()
                             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                                 <!-- Overview -->
                                 <div class="edu_wraper">
-                                    <h4 class="edu_title">توضیحات</h4>
-                                    <p>
-                                        طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو
-                                        در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت
-                                        که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت
-                                        تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی
-                                        دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود
-                                        طراحی اساسا مورد استفاده قرار گیرد.
-                                    </p>
-                                    <p>
-                                        از آنجایی که گنجاندن امکانات بیشتر باعث سنگین‌تر شدن آن
-                                        می‌شود، و از طرف دیگر همه کاربران وردپرس به آن نیازی
-                                        ندارند، این افزونه‌های وردپرس هستند که کار توسعه امکانات
-                                        وردپرس را به عهده دارند. در ادامه مطلب با آکادمی لرن آپ
-                                        مرجع آموزش برنامه نویسی همراه باشید. اگر علاقمند به کسب
-                                        اطلاعات بیشتر درباره وردپرس هستید پیشنهاد میکنیم به سایت
-                                        رسمی وردپرس مراجعه نمایید.
-                                    </p>
-                                    <h6>پیشنیازهای این دوره</h6>
-                                    <ul class="lists-3">
-                                        <li>دوره تصویری آموزش HTML به زبان فارسی</li>
-                                        <li>دوره تصویری آموزش PHP به زبان فارسی</li>
-                                        <li>دوره تصویری آموزش وردپرس به زبان فارسی</li>
-                                        <li>آشنایی نسبی با MySQL</li>
-                                        <li>آشنایی به نصب و مدیریت وردپرس</li>
-                                    </ul>
+                                    <?php echo $course->c_desc ?>
                                 </div>
                             </div>
 
@@ -546,7 +512,16 @@ function course_page()
                     <div class="ed_view_box style_3">
                         <div class="ed_view_price pr-4 mt-3">
                             <span>قیمت آموزش</span>
-                            <h2 class="theme-cl">149 تومان</h2>
+                            <h2 class="theme-cl d-flex"><span class="course_main_price">
+                                    <?php
+                                    if ($course->c_discount == '0') {
+                                        echo number_format($course->c_price);
+                                    } else {
+                                        echo '<div><span class="cources_price_discount">' . number_format(Helper::calculateDiscount($course->c_price, $course->c_discount)) . '</span><del>' . number_format($course->c_price) . '</del></div>';
+                                    }
+                                    ?>
+
+                                </span>تومان</h2>
                         </div>
 
                         <div class="ed_view_features pl-4 pr-3">
@@ -564,7 +539,18 @@ function course_page()
                             </ul>
                         </div>
                         <div class="ed_view_link">
-                            <a href="#" class="btn btn-theme enroll-btn">دریافت<i class="ti-angle-left"></i></a>
+
+                            <?php if (is_user_logged_in()) : ?>
+                                <a href="#" class="btn btn-theme enroll-btn">
+                                    ثبت نام
+                                    <i class="ti-angle-left"></i>
+                                </a>
+                            <?php else : ?>
+                                <a href="#" class="btn btn-theme enroll-btn">
+                                    برای ثبت نام ابتدا در سایت لاگین نمایید
+                                    <i class="ti-angle-left"></i>
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="edu_wraper border">

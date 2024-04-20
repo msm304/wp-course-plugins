@@ -128,4 +128,9 @@ class Helper
     {
         return explode('|', $string);
     }
+
+    public static function calculateDiscount($price, $discount)
+    {
+        return $price - ($price * $discount) / 100;
+    }
 }

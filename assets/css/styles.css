@@ -2037,6 +2037,9 @@ a.btn-trans-video i {
     background:#ff8f00;
     border-color: rgba(255,255,255,0.2);
 }
+video{
+    border-radius: 20px;
+}
 /*----------- GLobal Settings: Video ------------------*/
 .cover .video-block:not(:first-child):not(:last-child) {
     margin: 2.77em 0;
@@ -4348,6 +4351,12 @@ li.login-attri .account-drop a {
     color: #393d4e;
 	
 }
+.cources_price_discount{
+    font-size: 22px !important;
+}
+.course_main_price{
+    font-size: 17px !important;
+}
 .education_ratting {
     position: absolute;
     right: 0px;
@@ -5707,7 +5716,7 @@ ul.list_ed_detail2 li.tag-5 strong, ul.list_ed_detail2 li.tag-5 i {
 .property_video {
     position: relative;
 }
-.property_video:before {
+/* .property_video:before {
     background: #17203a;
     left: 0;
     right: 0;
@@ -5717,7 +5726,7 @@ ul.list_ed_detail2 li.tag-5 strong, ul.list_ed_detail2 li.tag-5 i {
     bottom: 0;
     opacity: 0.5;
 	 border-radius:1rem;
-}
+} */
 .property_video .thumb {
     border-radius:1rem;
     overflow: hidden;
@@ -5813,7 +5822,7 @@ ul.edu_list.third li {
 }
 .instructor_over_info {
     position: absolute;
-    bottom: 20px;
+    top: 20px;
     right: 20px;
 }
 .ins_info {
@@ -6057,7 +6066,7 @@ ul.edu_list.third li {
     padding-right: 10px;
 }
 .ed_view_price span {
-    font-size: 13px;
+    font-size: 19px;
 }
 .ed_view_features span {
     font-size: 14px;
