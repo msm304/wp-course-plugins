@@ -129,3 +129,4 @@ class WCPCore
     }
 }
 new WCPCore();
+new Course();

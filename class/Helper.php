@@ -110,10 +110,22 @@ class Helper
         $currentDate = strtotime(date('Y-m-d'));
         $expiredDate = strtotime($expiredDate);
         $remainingTime = round(($expiredDate - $currentDate) / (60 * 60 * 24))  . ' روز';
-        if($remainingTime >= 0){
+        if ($remainingTime >= 0) {
             return $remainingTime;
         } else {
             return 'منقضی شده';
         }
+    }
+
+    public static function getSlug($uri)
+    {
+        $uri = rtrim($uri, '/');
+        $slug = explode('/', $uri);
+        return end($slug);
+    }
+
+    public static function explodeString($string)
+    {
+        return explode('|', $string);
     }
 }
