@@ -7,6 +7,7 @@ function course_page()
     $slug = Helper::getSlug($_SERVER['REQUEST_URI']);
     $course = $Course->find($slug);
     $course_meta = $Course->find_course_meta($slug);
+    $course_references = $Course->find_references($slug);
 ?>
 
     <!-- ============================ Page Title Start================================== -->
@@ -75,185 +76,57 @@ function course_page()
                                 <h4 class="edu_title">جلسات دوره</h4>
                                 <div id="accordionExample" class="accordion shadow circullum">
                                     <!-- Part 1 -->
-                                    <div class="card">
-                                        <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-                                            <h6 class="mb-0 accordion_title">
-                                                <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block position-relative text-dark collapsible-link py-2">دوره اول: مقدمه و معرفی مدرس</a>
-                                            </h6>
-                                        </div>
-                                        <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
-                                            <div class="card-body pl-3 pr-3">
-                                                <ul class="lectures_lists">
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 1
-                                                        </div>
-                                                        معرفی دوره
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 2
-                                                        </div>
-                                                        ساخت منوها در بخش مدیریت
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 3
-                                                        </div>
-                                                        متاباکس و ذخیره اطلاعات برای پست ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 4
-                                                        </div>
-                                                        استفاده از قالب استاندارد در پلاگین ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 5
-                                                        </div>
-                                                        ذخیره و بازیابی تنظیمات در وردپرس
-                                                    </li>
-                                                </ul>
+                                    <?php
+                                    if ($course_references) :
+                                        foreach ($course_references as $reference) :
+                                    ?>
+                                            <div class="card">
+                                                <div id="heading-<?php echo $reference->id ?>" class="card-header bg-white shadow-sm border-0">
+                                                    <h6 class="mb-0 accordion_title">
+                                                        <a href="#" data-toggle="collapse" data-target="#collapse-<?php echo $reference->id ?>" aria-expanded="true" aria-controls="collaps-<?php echo $reference->id ?>" class="d-block position-relative text-dark collapsible-link py-2"><?php echo $reference->title ?></a>
+                                                    </h6>
+                                                </div>
+                                                <div id="collapse-<?php echo $reference->id ?>" aria-labelledby="heading-<?php echo $reference->id ?>" data-parent="#accordionExample" class="collapse show">
+                                                    <div class="card-body pl-3 pr-3">
+                                                        <ul class="lectures_lists">
+                                                            <li>
+                                                                <div class="lectures_lists_title">
+                                                                    <i class="ti-control-play"></i>دوره: 1
+                                                                </div>
+                                                                معرفی دوره
+                                                            </li>
+                                                            <li>
+                                                                <div class="lectures_lists_title">
+                                                                    <i class="ti-control-play"></i>دوره: 2
+                                                                </div>
+                                                                ساخت منوها در بخش مدیریت
+                                                            </li>
+                                                            <li>
+                                                                <div class="lectures_lists_title">
+                                                                    <i class="ti-control-play"></i>دوره: 3
+                                                                </div>
+                                                                متاباکس و ذخیره اطلاعات برای پست ها
+                                                            </li>
+                                                            <li class="unview">
+                                                                <div class="lectures_lists_title">
+                                                                    <i class="ti-control-play"></i>دوره: 4
+                                                                </div>
+                                                                استفاده از قالب استاندارد در پلاگین ها
+                                                            </li>
+                                                            <li class="unview">
+                                                                <div class="lectures_lists_title">
+                                                                    <i class="ti-control-play"></i>دوره: 5
+                                                                </div>
+                                                                ذخیره و بازیابی تنظیمات در وردپرس
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Part 2 -->
-                                    <div class="card">
-                                        <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
-                                            <h6 class="mb-0 accordion_title">
-                                                <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark collapsible-link py-2">دوره دوم: پیاده سازی پلاگین آمار بازدید</a>
-                                            </h6>
-                                        </div>
-                                        <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
-                                            <div class="card-body pl-3 pr-3">
-                                                <ul class="lectures_lists">
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 1
-                                                        </div>
-                                                        معرفی دوره
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 2
-                                                        </div>
-                                                        ساخت منوها در بخش مدیریت
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 3
-                                                        </div>
-                                                        متاباکس و ذخیره اطلاعات برای پست ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 4
-                                                        </div>
-                                                        استفاده از قالب استاندارد در پلاگین ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 5
-                                                        </div>
-                                                        ذخیره و بازیابی تنظیمات در وردپرس
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Part 3 -->
-                                    <div class="card">
-                                        <div id="headingThree" class="card-header bg-white shadow-sm border-0">
-                                            <h6 class="mb-0 accordion_title">
-                                                <a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark collapsible-link py-2">دوره سوم: پیاده سازی پلاگین رای دادن به مطالب</a>
-                                            </h6>
-                                        </div>
-                                        <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
-                                            <div class="card-body pl-3 pr-3">
-                                                <ul class="lectures_lists">
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 1
-                                                        </div>
-                                                        معرفی دوره
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 2
-                                                        </div>
-                                                        ساخت منوها در بخش مدیریت
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 3
-                                                        </div>
-                                                        متاباکس و ذخیره اطلاعات برای پست ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 4
-                                                        </div>
-                                                        استفاده از قالب استاندارد در پلاگین ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 5
-                                                        </div>
-                                                        ذخیره و بازیابی تنظیمات در وردپرس
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Part 04 -->
-                                    <div class="card">
-                                        <div id="headingFour" class="card-header bg-white shadow-sm border-0">
-                                            <h6 class="mb-0 accordion_title">
-                                                <a href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="d-block position-relative collapsed text-dark collapsible-link py-2">دوره نهایی: پیاده سازی پلاگین فروشگاه اینترنتی با
-                                                    درگاه پرداخت</a>
-                                            </h6>
-                                        </div>
-                                        <div id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample" class="collapse">
-                                            <div class="card-body pl-3 pr-3">
-                                                <ul class="lectures_lists">
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 1
-                                                        </div>
-                                                        معرفی دوره
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 2
-                                                        </div>
-                                                        ساخت منوها در بخش مدیریت
-                                                    </li>
-                                                    <li>
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 3
-                                                        </div>
-                                                        متاباکس و ذخیره اطلاعات برای پست ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 4
-                                                        </div>
-                                                        استفاده از قالب استاندارد در پلاگین ها
-                                                    </li>
-                                                    <li class="unview">
-                                                        <div class="lectures_lists_title">
-                                                            <i class="ti-control-play"></i>دوره: 5
-                                                        </div>
-                                                        ذخیره و بازیابی تنظیمات در وردپرس
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <span class="text-info">سر فصلی هنوز منتشر نشده است</span>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
