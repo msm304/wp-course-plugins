@@ -89,36 +89,22 @@ function course_page()
                                                 <div id="collapse-<?php echo $reference->id ?>" aria-labelledby="heading-<?php echo $reference->id ?>" data-parent="#accordionExample" class="collapse show">
                                                     <div class="card-body pl-3 pr-3">
                                                         <ul class="lectures_lists">
-                                                            <li>
-                                                                <div class="lectures_lists_title">
-                                                                    <i class="ti-control-play"></i>دوره: 1
-                                                                </div>
-                                                                معرفی دوره
-                                                            </li>
-                                                            <li>
-                                                                <div class="lectures_lists_title">
-                                                                    <i class="ti-control-play"></i>دوره: 2
-                                                                </div>
-                                                                ساخت منوها در بخش مدیریت
-                                                            </li>
-                                                            <li>
-                                                                <div class="lectures_lists_title">
-                                                                    <i class="ti-control-play"></i>دوره: 3
-                                                                </div>
-                                                                متاباکس و ذخیره اطلاعات برای پست ها
-                                                            </li>
-                                                            <li class="unview">
-                                                                <div class="lectures_lists_title">
-                                                                    <i class="ti-control-play"></i>دوره: 4
-                                                                </div>
-                                                                استفاده از قالب استاندارد در پلاگین ها
-                                                            </li>
-                                                            <li class="unview">
-                                                                <div class="lectures_lists_title">
-                                                                    <i class="ti-control-play"></i>دوره: 5
-                                                                </div>
-                                                                ذخیره و بازیابی تنظیمات در وردپرس
-                                                            </li>
+                                                            <?php
+                                                            $r_number = $reference->r_number;
+                                                            $course_videos = $Course->find_course_video($slug, $r_number);
+                                                            if ($course_videos) :
+                                                                foreach ($course_videos as $video) :
+                                                            ?>
+                                                                    <li>
+                                                                        <div class="lectures_lists_title">
+                                                                            <i class="ti-control-play"></i>جلسه: <?php echo $video->v_number ?>
+                                                                        </div>
+                                                                        <a href="<?php echo $video->v_link ?>"><?php echo $video->title ?></a>
+                                                                    </li>
+                                                                <?php endforeach; ?>
+                                                            <?php else : ?>
+                                                                <p class="alert alert-info">جلسه ای منتشر نشده است</p>
+                                                            <?php endif; ?>
                                                         </ul>
                                                     </div>
                                                 </div>
