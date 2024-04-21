@@ -10191,3 +10191,9 @@ ul.cources_facts_list li {
 .ed_view_price .theme-cl{
 	font-size: 26px
 }
+
+/* common */
+
+p{
+    margin: 0;
+}

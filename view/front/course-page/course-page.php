@@ -3,9 +3,10 @@
 function course_page()
 
 {
-    $course = new Course();
+    $Course = new Course();
     $slug = Helper::getSlug($_SERVER['REQUEST_URI']);
-    $course = $course->find($slug);
+    $course = $Course->find($slug);
+    $course_meta = $Course->find_course_meta($slug);
 ?>
 
     <!-- ============================ Page Title Start================================== -->
@@ -557,20 +558,20 @@ function course_page()
                         <h4 class="edu_title">ویژگی های دوره</h4>
                         <ul class="edu_list right">
                             <li>
-                                <i class="ti-user"></i>شرکت کنندگان:<strong><span>23</span> نفر</strong>
+                                <i class="ti-user"></i>شرکت کنندگان:<strong><span><?php echo $course_meta->c_student ?></span> نفر</strong>
                             </li>
-                            <li><i class="ti-game"></i>جلسات:<strong>5</strong></li>
+                            <li><i class="ti-game"></i>جلسات:<strong><?php echo $course_meta->c_session ?></strong></li>
                             <li>
-                                <i class="ti-time"></i>مدت دوره:<strong>9 ساعت</strong>
-                            </li>
-                            <li>
-                                <i class="ti-tag"></i>سطح دوره:<strong>مقدماتی</strong>
+                                <i class="ti-time"></i>مدت دوره:<strong><?php echo $course_meta->c_duration ?> ساعت</strong>
                             </li>
                             <li>
-                                <i class="ti-flag-alt"></i>زبان:<strong>فارسی</strong>
+                                <i class="ti-tag"></i>سطح دوره:<strong><?php echo $Course->course_level($course_meta->c_level) ?></strong>
                             </li>
                             <li>
-                                <i class="ti-shine"></i>نوع دوره:<strong>رایگان</strong>
+                                <i class="ti-flag-alt"></i>زبان:<strong><?php echo $Course->course_lang($course_meta->c_lang) ?></strong>
+                            </li>
+                            <li>
+                                <i class="ti-shine"></i>نوع دوره:<strong><?php echo $Course->course_type($course->c_type) ?></strong>
                             </li>
                         </ul>
                     </div>
