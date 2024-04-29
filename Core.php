@@ -58,8 +58,15 @@ class WCPCore
         wp_enqueue_script('wcp-bootstrap-js');
         wp_register_script('wcp-slick-js', WCP_PLUGIN_URL . '/assets/js/slick.js', ['jquery'], '1.6.0', true);
         wp_enqueue_script('wcp-slick-js');
+        wp_register_script('toast-js', WCP_PLUGIN_URL . '/assets/js/jquery.toast.js', ['jquery'], '1.6.0', true);
+        wp_enqueue_script('toast-js');
         wp_register_script('wcp-main-js', WCP_PLUGIN_URL . '/assets/js/main.js', ['jquery'], '1.0.0', true);
         wp_enqueue_script('wcp-main-js');
+        wp_enqueue_script('wcp-ajax', WCP_PLUGIN_URL . 'assets/js/ajax.js', ['jquery'], '1.0.0', '');
+        wp_localize_script('wcp-ajax', 'wcp_ajax', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            '_nonce' => wp_create_nonce()
+        ]);
     }
     public function wp_wcp_register_assets_admin()
     {
@@ -130,3 +137,5 @@ class WCPCore
 }
 new WCPCore();
 new Course();
+new Comment();
+new WCP_User();

@@ -1,6 +1,5 @@
 jQuery(document).ready(function ($) {
-
-  jQuery(".three_slide").slick({
+  $(".three_slide").slick({
     slidesToShow: 3,
     arrows: true,
     autoplay: true,
@@ -22,6 +21,7 @@ jQuery(document).ready(function ($) {
       },
     ],
   });
+
   $(".three_slide-dots").slick({
     slidesToShow: 3,
     arrows: true,
@@ -43,5 +43,52 @@ jQuery(document).ready(function ($) {
         },
       },
     ],
+  });
+
+  $(".video-title").on("click", function () {
+    let el = $(this);
+    let video_link = el.data("link");
+    $(".video-source").attr("src", video_link);
+    $(".course-video-player")[0].load();
+    $("html,body").animate({
+      scrollTop: $(".video-section").position().top,
+    });
+  });
+  // star rating
+  $(function () {
+    $(document).on(
+      {
+        mouseover: function (event) {
+          $(this).find(".far").addClass("star-over");
+          $(this).prevAll().find(".far").addClass("star-over");
+        },
+        mouseleave: function (event) {
+          $(this).find(".far").removeClass("star-over");
+          $(this).prevAll().find(".far").removeClass("star-over");
+        },
+      },
+      ".rate"
+    );
+
+    $(document).on("click", ".rate", function () {
+      if (!$(this).find(".star").hasClass("rate-active")) {
+        $(this)
+          .siblings()
+          .find(".star")
+          .addClass("far")
+          .removeClass("fas rate-active");
+        $(this)
+          .find(".star")
+          .addClass("rate-active fas")
+          .removeClass("far star-over");
+        $(this)
+          .prevAll()
+          .find(".star")
+          .addClass("fas")
+          .removeClass("far star-over");
+      } else {
+        console.log("has");
+      }
+    });
   });
 });

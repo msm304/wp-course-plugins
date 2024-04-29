@@ -7,6 +7,8 @@ class Course
     public $meta_table;
     public $references_table;
     public $video_table;
+    public $teacher_table;
+
     public function __construct()
     {
         global $wpdb;
@@ -15,6 +17,7 @@ class Course
         $this->meta_table = $this->db->prefix . 'wcp_coursemeta';
         $this->references_table = $this->db->prefix . 'wcp_course_references';
         $this->video_table = $this->db->prefix . 'wcp_course_video';
+        $this->teacher_table = $this->db->prefix . 'wcp_course_teacher';
     }
     public function find($c_slug)
     {
@@ -84,6 +87,14 @@ class Course
         $c_slug = sanitize_text_field($c_slug);
         $r_number = sanitize_text_field($r_number);
         $stmt = $this->db->get_results($this->db->prepare("SELECT * FROM {$this->video_table} WHERE c_slug = %s AND r_number = %d", $c_slug, $r_number));
+        if ($stmt) {
+            return $stmt;
+        }
+        return false;
+    }
+    public function find_course_teacher($t_id)
+    {
+        $stmt = $this->db->get_row($this->db->prepare("SELECT * FROM {$this->teacher_table} WHERE t_id = %d", $t_id));
         if ($stmt) {
             return $stmt;
         }

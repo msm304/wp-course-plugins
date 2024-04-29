@@ -22,7 +22,7 @@
                         </p>
                     </div>
 
-                    <div class="ed_rate_info">
+                    <!-- <div class="ed_rate_info">
                         <div class="star_info">
                             <i class="fas fa-star filled"></i>
                             <i class="fas fa-star filled"></i>
@@ -33,7 +33,7 @@
                         <div class="review_counter">
                             <strong class="high">4.7</strong> 3572 امتیاز
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

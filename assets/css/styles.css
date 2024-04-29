@@ -5644,7 +5644,8 @@ ul.list_ed_detail2 li.tag-5 strong, ul.list_ed_detail2 li.tag-5 i {
 .listing-rating {
     margin-bottom: 1rem;
 }
-.reviews-comments-item-text .listing-rating i {
+.reviews-comments-item-text .listing-rating i ,
+.rating-overview-box .listing-rating i{
     width: 25px;
     height: 25px;
     background:#f4f5f7;
@@ -5656,7 +5657,8 @@ ul.list_ed_detail2 li.tag-5 strong, ul.list_ed_detail2 li.tag-5 i {
     font-size: 14px;
 	color:#86889a;
 }
-.reviews-comments-item-text .listing-rating i.active {
+.reviews-comments-item-text .listing-rating i.active,
+ .rating-overview-box .listing-rating i.active {
     width: 22px;
     height: 22px;
     display: inline-block;
@@ -5667,13 +5669,16 @@ ul.list_ed_detail2 li.tag-5 strong, ul.list_ed_detail2 li.tag-5 i {
     font-size: 11px;
     color: #ffffff;
 }
-.reviews-comments-item-text .listing-rating.high i.active{
+
+.reviews-comments-item-text .listing-rating.high i.active ,
+.rating-overview-box .listing-rating.high i.active{
 	background:#00ba74;
 }
 .reviews-comments-item-text .listing-rating.good i.active{
 	background:#83ce36;
 }
-.reviews-comments-item-text .listing-rating.mid i.active{
+.reviews-comments-item-text .listing-rating.mid i.active ,
+ .rating-overview-box .listing-rating.mid i.active{
 	background:#fbb851;
 }
 .reviews-comments-item-text .listing-rating.poor i.active{
@@ -5938,7 +5943,7 @@ ul.edu_list.third li {
     align-items: center;
     flex-shrink: 0;
     border: #ffdead;
-    width: 135px;
+    width: 185px;
     margin-left: 20px;
     text-align: center;
     border-radius: 0;
@@ -10196,4 +10201,144 @@ ul.cources_facts_list li {
 
 p{
     margin: 0;
+}
+
+.video-download-link{
+    position: absolute;
+    left: 63px;
+    top: 25px;
+}
+
+.teacher-resume li:last-child{
+    font-weight: bold;
+}
+
+.wrap {
+    width: 250px;
+    height: 50px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.stars {
+    width: fit-content;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.star {
+    color: #91a6ff !important;
+}
+
+.rate {
+    height: 50px;
+    margin-left: -5px;
+    padding: 5px;
+    font-size: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.rate input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    pointer-events: none;
+}
+
+.star-over::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 16px;
+    content: "\f005";
+    display: inline-block;
+    color: #d3dcff;
+    z-index: 1;
+    position: absolute;
+    top: 14px;
+    left: 10px;
+}
+
+.rate:nth-child(1) .face::after {
+    content: "\f119";
+    /* ☹ */
+}
+
+.rate:nth-child(2) .face::after {
+    content: "\f11a";
+    /* 😐 */
+}
+
+.rate:nth-child(3) .face::after {
+    content: "\f118";
+    /* 🙂 */
+}
+
+.rate:nth-child(4) .face::after {
+    content: "\f580";
+    /* 😊 */
+}
+
+.rate:nth-child(5) .face::after {
+    content: "\f59a";
+    /* 😄 */
+}
+
+.face {
+    opacity: 0;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: #91a6ff;
+    border-radius: 5px;
+    top: -50px;
+    left: 2px;
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+.face::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f0dd";
+    display: inline-block;
+    color: #91a6ff;
+    z-index: 1;
+    position: absolute;
+    left: 9px;
+    bottom: -15px;
+}
+
+.face::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    display: inline-block;
+    color: #fff;
+    z-index: 1;
+    position: absolute;
+    left: 5px;
+    top: -1px;
+}
+
+.rate:hover .face {
+    opacity: 1;
+}
+
+.loading-icon {
+    display: none;
+    animation: loader 1s linear infinite;
+}
+@keyframes loader{
+    0%{
+        transform: rotate(360deg);
+    }
+    100%{
+        transform: rotate(0deg1);
+    }
 }
