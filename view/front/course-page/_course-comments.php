@@ -110,7 +110,7 @@
                                                             <i class="ti-reload mx-2 loading-icon"></i>
                                                         </button>
                                                         <input type="hidden" class="c_slug" value="<?php echo $slug ?>">
-                                                        <input type="hidden" class="c_id" value="<?php echo $Course->find($slug)->c_id ?>">
+                                                        <input type="hidden" class="c_id" value="<?php echo $Course->find_by_slug($slug)->c_id ?>">
                                                     </div>
                                                 </div>
                                             </div>

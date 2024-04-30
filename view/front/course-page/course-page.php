@@ -7,7 +7,7 @@ function course_page()
     $Comment = new Comment();
     $User = new WCP_User();
     $slug = Helper::getSlug($_SERVER['REQUEST_URI']);
-    $course = $Course->find($slug);
+    $course = $Course->find_by_slug($slug);
     $course_meta = $Course->find_course_meta($slug);
     $course_references = $Course->find_references($slug);
 ?>

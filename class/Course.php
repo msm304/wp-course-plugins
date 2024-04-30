@@ -8,6 +8,7 @@ class Course
     public $references_table;
     public $video_table;
     public $teacher_table;
+    public $students_table;
 
     public function __construct()
     {
@@ -18,8 +19,17 @@ class Course
         $this->references_table = $this->db->prefix . 'wcp_course_references';
         $this->video_table = $this->db->prefix . 'wcp_course_video';
         $this->teacher_table = $this->db->prefix . 'wcp_course_teacher';
+        $this->students_table = $this->db->prefix . 'wcp_course_students';
     }
-    public function find($c_slug)
+    public function find()
+    {
+        $stmt = $this->db->get_results("SELECT * FROM {$this->table} ORDER BY id DESC");
+        if ($stmt) {
+            return $stmt;
+        }
+        return false;
+    }
+    public function find_by_slug($c_slug)
     {
         $c_slug = sanitize_text_field($c_slug);
         $stmt = $this->db->get_row($this->db->prepare("SELECT * FROM {$this->table} WHERE c_slug = %s", $c_slug));
@@ -97,6 +107,39 @@ class Course
         $stmt = $this->db->get_row($this->db->prepare("SELECT * FROM {$this->teacher_table} WHERE t_id = %d", $t_id));
         if ($stmt) {
             return $stmt;
+        }
+        return false;
+    }
+    public function get_course_meta($course_id, $key, $single = false)
+    {
+        $stmt = $this->db->get_row($this->db->prepare("SELECT {$key} FROM {$this->meta_table} WHERE c_id = %d", $course_id));
+        if ($stmt) {
+            switch ($single) {
+                case false:
+                    return $stmt;
+                    break;
+                case true:
+                    return $stmt->$key;
+                    break;
+            }
+        }
+        return false;
+    }
+    public function count_course_teacher($t_id)
+    {
+        $t_id = sanitize_text_field($t_id);
+        $count_course_teacher = $this->db->get_var($this->db->prepare("SELECT COUNT(*) FROM {$this->table} WHERE t_id = %d", $t_id));
+        if ($count_course_teacher) {
+            return $count_course_teacher;
+        }
+        return false;
+    }
+    public function count_course_students($c_id)
+    {
+        $c_id = sanitize_text_field($c_id);
+        $count_course_students = $this->db->get_var($this->db->prepare("SELECT COUNT(*) FROM {$this->students_table} WHERE c_id = %d", $c_id));
+        if ($count_course_students) {
+            return $count_course_students;
         }
         return false;
     }
