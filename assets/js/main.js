@@ -1,4 +1,8 @@
 jQuery(document).ready(function ($) {
+  $(".counter1").countMe(40, 0.1);
+  $(".counter-2").countMe(40, 0.1);
+  $(".counter-3").countMe(40, 0.1);
+  $(".counter-4").countMe(40, 0.1);
   $(".three_slide").slick({
     slidesToShow: 3,
     arrows: true,
@@ -91,4 +95,12 @@ jQuery(document).ready(function ($) {
       }
     });
   });
+
 });
+
+  jalaliDatepicker.startWach({
+    persianDigits: true,
+    seperetorChars: {
+      date: "-",
+    },
+  });

@@ -6,7 +6,7 @@
                                 <div class="reviews-comments-wrap">
                                     <!-- reviews-comments-item -->
                                     <?php
-                                    $comments = $Comment->find($slug);
+                                    $comments = $Comment->find_by_slug($slug);
                                     if ($comments) :
                                         foreach ($comments as $comment) :
                                     ?>

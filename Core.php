@@ -30,6 +30,7 @@ class WCPCore
         define('WCP_PLUGIN_DIR', plugin_dir_path(__FILE__));
         define('WCP_PLUGIN_URL', plugin_dir_url(__FILE__));
         define('WCP_PLUGIN_VIEW', WCP_PLUGIN_DIR . 'view/');
+        define('WCP_DASHBOARD_VIEW', WCP_PLUGIN_DIR . 'dashboard/');
     }
     private function init()
     {
@@ -37,12 +38,14 @@ class WCPCore
         register_activation_hook(__FILE__, [$this, 'wp_wcp_activation']);
         register_deactivation_hook(__FILE__, [$this, 'wp_wcp_deactivation']);
         add_action('get_header', [$this, 'wp_wcp_register_course_header_assets']);
-        add_action('admin_enqueue_scripts', [$this, 'wp_wcp_register_assets_admin']);
+        // add_action('admin_enqueue_scripts', [$this, 'wp_wcp_register_assets_admin']);
+        add_action('wp_enqueue_scripts', [$this, 'wp_wcp_register_assets_dashboard']);
         add_action('init', [$this, 'wp_wcp_is_jdate_exists']);
         add_filter('template_redirect', [$this, 'ob_start']);
 
         // Include
         include_once(ABSPATH . 'wp-includes/pluggable.php');
+        include_once WCP_PLUGIN_DIR . 'dashboard/router.php';
         include_once WCP_PLUGIN_VIEW . 'front/course-page/course-page.php';
         include_once WCP_PLUGIN_VIEW . 'front/course-sliders/course-slider.php';
         include_once WCP_PLUGIN_VIEW . 'front/course-sliders/course-feedback-slider.php';
@@ -52,6 +55,8 @@ class WCPCore
         // CSS
         wp_register_style('wcp-main-style', WCP_PLUGIN_URL . '/assets/css/styles.css', '', '1.0.0');
         wp_enqueue_style('wcp-main-style');
+        wp_register_style('wcp-dashboard-style', WCP_PLUGIN_URL . '/assets/css/dashboard/styles.css', '', '1.0.0');
+        wp_enqueue_style('wcp-dashboard-style');
 
         // JS
         wp_register_script('wcp-bootstrap-js', WCP_PLUGIN_URL . '/assets/js/bootstrap.min.js', ['jquery'], '4.6.0', true);
@@ -60,6 +65,8 @@ class WCPCore
         wp_enqueue_script('wcp-slick-js');
         wp_register_script('toast-js', WCP_PLUGIN_URL . '/assets/js/jquery.toast.js', ['jquery'], '1.6.0', true);
         wp_enqueue_script('toast-js');
+        wp_register_script('countMe', WCP_PLUGIN_URL . '/assets/js/countMe.min.js', ['jquery'], '1.6.0', true);
+        wp_enqueue_script('countMe');
         wp_register_script('wcp-main-js', WCP_PLUGIN_URL . '/assets/js/main.js', ['jquery'], '1.0.0', true);
         wp_enqueue_script('wcp-main-js');
         wp_enqueue_script('wcp-ajax', WCP_PLUGIN_URL . 'assets/js/ajax.js', ['jquery'], '1.0.0', '');
@@ -68,8 +75,30 @@ class WCPCore
             '_nonce' => wp_create_nonce()
         ]);
     }
-    public function wp_wcp_register_assets_admin()
+    public function wp_wcp_register_assets_dashboard()
     {
+        //CSS
+        wp_register_style('jalali-datepicker', 'https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css', '', '1.0.0');
+        wp_enqueue_style('jalali-datepicker');
+        wp_register_style('bootstrap-5-style', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css', '', '5.0.2');
+        wp_enqueue_style('bootstrap-5-style');
+        wp_register_style('wcp-style-dashboard', WCP_PLUGIN_URL . '/assets/dashboard/css/style.css', '', '1.0.0');
+        wp_enqueue_style('wcp-style-dashboard');
+
+        //JS
+        wp_register_script('wcp-bootstrap-5-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js', '', '5.0.2', true);
+        wp_enqueue_script('wcp-bootstrap-5-js');
+        wp_register_script('jalali-datepicker-js', 'https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js', '', '1.0.0', true);
+        wp_enqueue_script('jalali-datepicker-js');
+        wp_register_script('jquery.toast-js', WCP_PLUGIN_URL . '/assets/dashboard/js/jquery.toast.js', ['jquery'], '1.0.0', true);
+        wp_enqueue_script('jquery.toast-js');
+        wp_register_script('main-dashboard-js', WCP_PLUGIN_URL . '/assets/dashboard/js/main.js', ['jquery'], '1.0.0', true);
+        wp_enqueue_script('main-dashboard-js');
+        wp_enqueue_script('wcp-ajax-dashboard', WCP_PLUGIN_URL . 'assets/dashboard/js/ajax.js', ['jquery'], '1.0.0', '');
+        wp_localize_script('wcp-ajax-dashboard', 'wcp_ajax', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            '_nonce' => wp_create_nonce()
+        ]);
     }
     public function wp_wcp_activation()
     {

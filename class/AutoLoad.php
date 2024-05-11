@@ -19,9 +19,15 @@ class WCPAutoLoad
 
     public function load($class)
     {
-        if (is_readable(trailingslashit(WCP_PLUGIN_DIR . 'class') . $class . '.php')) {
+        if (is_readable(trailingslashit(WCP_PLUGIN_DIR . 'class') . $class . '.php') || is_readable(trailingslashit(WCP_PLUGIN_DIR . 'dashboard') . $class . '.php')|| is_readable(trailingslashit(WCP_PLUGIN_DIR . 'dashboard/Model') . $class . '.php')) {
             if (file_exists(trailingslashit(WCP_PLUGIN_DIR . 'class') . $class . '.php')) {
                 include_once trailingslashit(WCP_PLUGIN_DIR . 'class') . $class . '.php';
+            }
+            if (file_exists(trailingslashit(WCP_PLUGIN_DIR . 'dashboard') . $class . '.php')) {
+                include_once trailingslashit(WCP_PLUGIN_DIR . 'dashboard') . $class . '.php';
+            }
+            if (file_exists(trailingslashit(WCP_PLUGIN_DIR . 'dashboard/Model') . $class . '.php')) {
+                include_once trailingslashit(WCP_PLUGIN_DIR . 'dashboard/Model') . $class . '.php';
             }
         }
         return;

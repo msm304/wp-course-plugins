@@ -31,7 +31,7 @@ function wp_wcp_course_slider()
                         if ($courses) :
                             foreach ($courses as $course) :
                                 $cours_meta = $Course->find_course_meta($course->c_slug);
-                                $comments = $Comment->find($course->c_slug);
+                                $comments = $Comment->find_by_slug($course->c_slug);
                                 $slug = $course->c_slug;
                                 // var_dump($slug);
                                 // $star_rate = $comments->rate();

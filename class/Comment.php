@@ -9,11 +9,20 @@ class Comment
     {
         global $wpdb;
         $this->db = $wpdb;
-        $this->table = $this->db->prefix . 'course_comments';
+        $this->table = $this->db->prefix . 'wcp_course_comments';
         add_action('wp_ajax_add_student_comment', [$this, 'add_student_comment']);
     }
 
-    public function find($c_slug)
+    public function find()
+    {
+        $stmt = $this->db->get_results("SELECT c_slug, full_name, email, comment, rate  FROM {$this->table} ORDER BY rand() LIMIT 5");
+        if ($stmt) {
+            return $stmt;
+        }
+        return false;
+    }
+
+    public function find_by_slug($c_slug)
     {
         $c_slug = sanitize_text_field($c_slug);
         $stmt = $this->db->get_results($this->db->prepare("SELECT * FROM {$this->table} WHERE c_slug = %s ORDER BY id DESC", $c_slug));

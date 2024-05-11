@@ -38,6 +38,15 @@ class Course
         }
         return false;
     }
+    public function find_course_title($c_slug)
+    {
+        $c_slug = sanitize_text_field($c_slug);
+        $stmt = $this->db->get_row($this->db->prepare("SELECT  c_title FROM {$this->table} WHERE c_slug = %s", $c_slug));
+        if ($stmt) {
+            return $stmt;
+        }
+        return false;
+    }
     public function find_course_meta($c_slug)
     {
         $c_slug = sanitize_text_field($c_slug);
@@ -142,5 +151,29 @@ class Course
             return $count_course_students;
         }
         return false;
+    }
+    public function count_course()
+    {
+        $count_course = $this->db->get_var($this->db->prepare("SELECT COUNT(id) FROM {$this->table}"));
+        if ($count_course) {
+            return $count_course;
+        }
+        return '0';
+    }
+    public function count_teacher()
+    {
+        $count_course = $this->db->get_var($this->db->prepare("SELECT COUNT(id) FROM {$this->teacher_table}"));
+        if ($count_course) {
+            return $count_course;
+        }
+        return '0';
+    }
+    public function count_student()
+    {
+        $count_course = $this->db->get_var($this->db->prepare("SELECT COUNT(id) FROM {$this->students_table}"));
+        if ($count_course) {
+            return $count_course;
+        }
+        return '0';
     }
 }
