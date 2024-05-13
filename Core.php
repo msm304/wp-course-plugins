@@ -95,7 +95,7 @@ class WCPCore
         wp_register_script('main-dashboard-js', WCP_PLUGIN_URL . '/assets/dashboard/js/main.js', ['jquery'], '1.0.0', true);
         wp_enqueue_script('main-dashboard-js');
         wp_enqueue_script('wcp-ajax-dashboard', WCP_PLUGIN_URL . 'assets/dashboard/js/ajax.js', ['jquery'], '1.0.0', '');
-        wp_localize_script('wcp-ajax-dashboard', 'wcp_ajax', [
+        wp_localize_script('wcp-ajax-dashboard', 'wcp_ajax_dashboard', [
             'ajax_url' => admin_url('admin-ajax.php'),
             '_nonce' => wp_create_nonce()
         ]);
@@ -168,3 +168,4 @@ new WCPCore();
 new Course();
 new Comment();
 new WCP_User();
+new WCP_Dashboard_Student();

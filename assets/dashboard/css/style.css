@@ -168,6 +168,7 @@ tbody, td, tfoot, th, thead, tr {
 
 
 .loading-icon{
+    display: none !important;
     animation: loading 1.3s linear infinite reverse;
 }
 @keyframes loading {

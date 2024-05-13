@@ -23,45 +23,46 @@
                     </div>
                     <ul class="nav flex-column aside-nav">
                         <li class="nav-item py-1">
-                            <a class="nav-link py-3" href=""><i class="ti-panel"></i>داشبورد</a>
+                            <a class="nav-link py-3" href="<?php echo site_url('dashboard') ?>"><i class="ti-panel"></i>داشبورد</a>
                         </li>
                         <li class="nav-item py-1">
-                            <a class="nav-link py-3" href="<?php echo site_url('dashboard') ?>"><i class="ti-book"></i>دوره های من</a>
+                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/my-courses') ?>"><i class="ti-book"></i>دوره های من</a>
+                        </li>
                         </li>
                         <li class="nav-item py-1">
-                            <a class="nav-link py-3" href=""><i class="ti-credit-card"></i>پرداخت های من</a>
+                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/my-transactions') ?>"><i class="ti-credit-card"></i>پرداخت های من</a>
                         </li>
-                            <li class="nav-item py-1">
-                                <a class="nav-link py-3" href=""><i class="ti-user"></i>مدیریت دانشجویان</a>
-                            </li>
-                            <li class="nav-item py-1">
-                                <a class="nav-link py-3" href="#"><i class="ti-money"></i>مدیریت تراکنش ها</a>
-                            </li>
-                            <li class="nav-item py-1">
-                                <a class="nav-link py-3" data-bs-toggle="collapse" data-bs-target="#helpers-collapse" aria-expanded="true">
-                                    <i class="ti-book"></i>مدیریت دوره های آموزشی
-                                </a>
-                                <div class="collapse" id="helpers-collapse" >
-                                    <ul class="list-unstyled">
-                                        <li class="py-1 "><a href="" class="p-3"><i class="ti-plus"></i>افزودن دوره</a></li>
-                                        <li class="py-1"><a href="" class="p-3"><i class="ti-pencil-alt"></i>ویرایش دوره</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item py-1">
-                                <a class="nav-link py-3" href=""><i class="ti-user"></i>مدیریت مدرسین</a>
-                            </li>
-                            <li class="nav-item py-1">
-                                <a class="nav-link py-3" data-bs-toggle="collapse" data-bs-target="#session-collapse" aria-expanded="true">
-                                    <i class="ti-folder"></i>مدیریت جلسات آموزشی
-                                </a>
-                                <div class="collapse" id="session-collapse">
-                                    <ul class="list-unstyled">
-                                        <li class="py-1 "><a href="" class="p-3"><i class="ti-plus"></i>سرفصل ها</a></li>
-                                        <li class="py-1"><a href="" class="p-3"><i class="ti-pencil-alt"></i> جلسات ویدیویی</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                        <li class="nav-item py-1">
+                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/students') ?>"><i class="ti-user"></i>مدیریت دانشجویان</a>
+                        </li>
+                        <li class="nav-item py-1">
+                            <a class="nav-link py-3" href="#"><i class="ti-money"></i>مدیریت تراکنش ها</a>
+                        </li>
+                        <li class="nav-item py-1">
+                            <a class="nav-link py-3" data-bs-toggle="collapse" data-bs-target="#helpers-collapse" aria-expanded="true">
+                                <i class="ti-book"></i>مدیریت دوره های آموزشی
+                            </a>
+                            <div class="collapse" id="helpers-collapse">
+                                <ul class="list-unstyled">
+                                    <li class="py-1 "><a href="" class="p-3"><i class="ti-plus"></i>افزودن دوره</a></li>
+                                    <li class="py-1"><a href="" class="p-3"><i class="ti-pencil-alt"></i>ویرایش دوره</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item py-1">
+                            <a class="nav-link py-3" href=""><i class="ti-user"></i>مدیریت مدرسین</a>
+                        </li>
+                        <li class="nav-item py-1">
+                            <a class="nav-link py-3" data-bs-toggle="collapse" data-bs-target="#session-collapse" aria-expanded="true">
+                                <i class="ti-folder"></i>مدیریت جلسات آموزشی
+                            </a>
+                            <div class="collapse" id="session-collapse">
+                                <ul class="list-unstyled">
+                                    <li class="py-1 "><a href="" class="p-3"><i class="ti-plus"></i>سرفصل ها</a></li>
+                                    <li class="py-1"><a href="" class="p-3"><i class="ti-pencil-alt"></i> جلسات ویدیویی</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </aside>
             </div>
@@ -97,24 +98,24 @@
                         </div>
                     </div>
 
-                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                            <div class="card darkblue position-relative">
-                                <i class="ti-money position-absolute"></i>
-                                <div class="title">میانگین فروش</div>
-                                <i class="zmdi zmdi-download"></i>
-                                <div class="value"><span class="font-primary-color">تومان</span></div>
-                                <div class="stat"><b></b></div>
-                            </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="card darkblue position-relative">
+                            <i class="ti-money position-absolute"></i>
+                            <div class="title">میانگین فروش</div>
+                            <i class="zmdi zmdi-download"></i>
+                            <div class="value"><span class="font-primary-color">تومان</span></div>
+                            <div class="stat"><b></b></div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                            <div class="card red position-relative ">
-                                <i class="ti-money position-absolute"></i>
-                                <div class="title">کل فروش</div>
-                                <i class="zmdi zmdi-download"></i>
-                                <div class="value"><span class="font-primary-color">تومان</span></div>
-                                <div class="stat"><b></b></div>
-                            </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="card red position-relative ">
+                            <i class="ti-money position-absolute"></i>
+                            <div class="title">کل فروش</div>
+                            <i class="zmdi zmdi-download"></i>
+                            <div class="value"><span class="font-primary-color">تومان</span></div>
+                            <div class="stat"><b></b></div>
                         </div>
+                    </div>
                 </div>
                 <?php include WCP_DASHBOARD_VIEW . $view; ?>
             </div>

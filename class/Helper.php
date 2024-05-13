@@ -61,6 +61,13 @@ class Helper
 
     public static function toJalali($date, $separator)
     {
+        $date = explode(" ", $date);
+        $date = explode('-', $date[0]);
+        $year = intval($date[0]);
+        $month = intval($date[1]);
+        $day = intval($date[2]);
+        $date = [$year, $month, $day];
+        $date = implode('-', $date);
         if (empty($date)) {
             return 'تاریخی ثبت نشده است!';
         }
