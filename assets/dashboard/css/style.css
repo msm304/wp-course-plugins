@@ -443,3 +443,23 @@ margin-right: auto;
 .v-li-bg-primary-color{
     background: #1b2431;
 }
+.wcp-input-color{
+    color: #ccc9c9 !important;
+    background: #1b2431 !important;
+    border: none !important;
+}
+
+.modal-button{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.wcp-edit-student-button{
+    color: #ccc9c9 !important;
+    background: #ffffff00 !important;
+    border: none;
+}
+
+.border-b-gray-3{
+    border-bottom: 3px solid #efefef;
+}

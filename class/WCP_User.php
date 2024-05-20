@@ -15,7 +15,7 @@ class WCP_User
     public function is_user_student()
     {
         $user_id = get_current_user_id();
-        $stmt = $this->db->get_row($this->db->prepare("SELECT user_id FROM {$this->table} WHERE user_id =%d LIMIT 1", $user_id));
+        $stmt = $this->db->get_row($this->db->prepare("SELECT user_id FROM {$this->table} WHERE id =%d LIMIT 1", $user_id));
         if ($stmt) {
             return true;
         }

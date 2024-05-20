@@ -18,8 +18,10 @@
             <div class="col-sm-12 col-md-3 aside-wrapper">
                 <aside class="dashboard-nav px-3">
                     <div class="user-info d-flex justify-content-center align-items-center flex-column">
-                        <p class="display-user-name font-primary-color my-3"></p>
-                        <p class="membership-date font-primary-color">تاریخ عضویت
+                        <?php echo get_avatar(wp_get_current_user()->user_email, 135, '', wp_get_current_user()->display_name) ?>
+                        <p class="display-user-name font-primary-color my-3"><?php echo wp_get_current_user()->display_name ?></p>
+                        <p class="membership-date font-primary-color">تاریخ عضویت:
+                        <p><?php echo Helper::toJalali(wp_get_current_user()->user_registered, '-') ?></p>
                     </div>
                     <ul class="nav flex-column aside-nav">
                         <li class="nav-item py-1">
@@ -36,18 +38,10 @@
                             <a class="nav-link py-3" href="<?php echo site_url('dashboard/students') ?>"><i class="ti-user"></i>مدیریت دانشجویان</a>
                         </li>
                         <li class="nav-item py-1">
-                            <a class="nav-link py-3" href="#"><i class="ti-money"></i>مدیریت تراکنش ها</a>
+                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/transactions') ?>"><i class="ti-money"></i>مدیریت تراکنش ها</a>
                         </li>
                         <li class="nav-item py-1">
-                            <a class="nav-link py-3" data-bs-toggle="collapse" data-bs-target="#helpers-collapse" aria-expanded="true">
-                                <i class="ti-book"></i>مدیریت دوره های آموزشی
-                            </a>
-                            <div class="collapse" id="helpers-collapse">
-                                <ul class="list-unstyled">
-                                    <li class="py-1 "><a href="" class="p-3"><i class="ti-plus"></i>افزودن دوره</a></li>
-                                    <li class="py-1"><a href="" class="p-3"><i class="ti-pencil-alt"></i>ویرایش دوره</a></li>
-                                </ul>
-                            </div>
+                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/courses') ?>"><i class="ti-money"></i>مدیریت دوره های آموزشی</a>
                         </li>
                         <li class="nav-item py-1">
                             <a class="nav-link py-3" href=""><i class="ti-user"></i>مدیریت مدرسین</a>

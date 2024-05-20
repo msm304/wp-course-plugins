@@ -140,4 +140,11 @@ class Helper
     {
         return $price - ($price * $discount) / 100;
     }
+
+    public static function getUrlParam($url)
+    {
+        $baseUrl = parse_url($url, PHP_URL_PATH);
+        $getParam = explode('/', $baseUrl);
+        return end($getParam);
+    }
 }
