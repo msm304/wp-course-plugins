@@ -58,16 +58,20 @@ class WCP_Dashboard_Courses
 
     public function add($data)
     {
-        $format_course = ['%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
-        var_dump($data['course']);
-        $format_course_meta = ['%s', '%d', '%d', '%s', '%s', '%s', '%s'];
-        var_dump($data['course_meta']);
+        var_dump($data);
+        //       var_dump($data['course']);
+        //       var_dump($data['course_meta']);
+        //       var_dump($cid);
+        //        var_dump($data['course_meta']);
+        $format_course = ['%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
+        $format_course_meta = ['%d', '%s', '%d', '%d', '%s', '%s', '%s', '%s'];
+
         $course = $this->db->insert($this->courseTable, $data['course'], $format_course);
-        $course_meta = $this->db->update($this->courseMetaTable, $data['course_meta'], $format_course_meta);
+        $course_meta = $this->db->insert($this->courseMetaTable, $data['course_meta'], $format_course_meta);
         if ($course && $course_meta) {
             FlashMessage::addMsg('دوره مورد نظر با موفقیت اضافه گردید.', 1);
         } else {
-            FlashMessage::addMsg('خطایی در افزودن دوره مورد نظر رخ داده است !!!', 0);
+            FlashMessage::addMsg('خطایی در افزودن دوره رخ داده است !!!', 0);
         }
     }
 }

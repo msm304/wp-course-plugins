@@ -3,14 +3,13 @@ class add_courseController extends Handler
 {
     public function index()
     {
-        // $course = new WCP_Dashboard_Courses();
         $params = [];
         View::LoadView('View.AddCourseView', $params);
     }
-    public static function addAction()
+    public static function updateAction()
     {
         if (isset($_POST['course_add'])) {
-            if (empty($_POST['_add_course']) || !wp_verify_nonce($_POST['_add_course'], '_add_course')) {
+            if (empty($_POST['_course_add']) || !wp_verify_nonce($_POST['_course_add'], '_course_add')) {
                 die('access denied !!!');
             }
             foreach ($_POST as $item) {
@@ -19,10 +18,14 @@ class add_courseController extends Handler
                     return;
                 }
             }
+            // var_dump($_POST);
         }
+
         $data = [
             'course' => [
                 'c_title' => sanitize_text_field($_POST['c_title']),
+                'c_id' => intval($_POST['c_id']),
+                't_id' => intval($_POST['t_id']),
                 'c_slug' => sanitize_text_field($_POST['c_slug']),
                 'c_tags' => sanitize_text_field($_POST['c_tags']),
                 'c_price' => sanitize_text_field($_POST['c_price']),
@@ -35,6 +38,7 @@ class add_courseController extends Handler
                 'c_desc' => wp_kses($_POST['c_desc'], Helper::allowHtmlTag(), Helper::allowProtocols()),
             ],
             'course_meta' => [
+                'c_id' => intval($_POST['c_id']),
                 'c_slug' => sanitize_text_field($_POST['c_slug']),
                 'c_level' => intval($_POST['c_level']),
                 'c_lang' => intval($_POST['c_lang']),
@@ -44,8 +48,8 @@ class add_courseController extends Handler
                 'c_duration' => sanitize_text_field($_POST['c_duration']),
             ]
         ];
+        // var_dump($c_title, $c_slug);
         $course = new WCP_Dashboard_Courses();
         $course->add($data);
-        var_dump($data);
     }
 }
