@@ -147,4 +147,92 @@ class Helper
         $getParam = explode('/', $baseUrl);
         return end($getParam);
     }
+    public static function allowHtmlTag(): array
+    {
+        return array(
+            'a' => array(
+                'class' => array(),
+                'id' => array(),
+                'href'  => array(),
+                'rel'   => array(),
+                'title' => array(),
+            ),
+            'abbr' => array(
+                'title' => array(),
+            ),
+            'b' => array(),
+            'blockquote' => array(
+                'cite'  => array(),
+            ),
+            'cite' => array(
+                'title' => array(),
+            ),
+            'code' => array(),
+            'pre' => array(),
+            'del' => array(
+                'datetime' => array(),
+                'title' => array(),
+            ),
+            'dd' => array(),
+            'div' => array(
+                'class' => array(),
+                'title' => array(),
+                'style' => array(),
+            ),
+            'dl' => array(),
+            'dt' => array(),
+            'em' => array(),
+            'h1' => array(),
+            'h2' => array(),
+            'h3' => array(),
+            'h4' => array(),
+            'h5' => array(),
+            'h6' => array(),
+            'i' => array(),
+            'img' => array(
+                'alt'    => array(),
+                'class'  => array(),
+                'id'  => array(),
+                'height' => array(),
+                'src'    => array(),
+                'width'  => array(),
+            ),
+            'li' => array(
+                'class' => array(),
+                'id' => array(),
+            ),
+            'ol' => array(
+                'class' => array(),
+                'id' => array(),
+            ),
+            'p' => array(
+                'class' => array(),
+                'id' => array(),
+            ),
+            'q' => array(
+                'cite' => array(),
+                'title' => array(),
+            ),
+            'span' => array(
+                'class' => array(),
+                'title' => array(),
+                'style' => array(),
+                'id' => array(),
+            ),
+            'strike' => array(),
+            'strong' => array(),
+            'ul' => array(
+                'class' => array(),
+                'id' => array(),
+            ),
+        );
+    }
+    public static function allowProtocols(): array
+    {
+        return array(
+            'data'     => array(),
+            'http'    => array(),
+            'https' => array(),
+        );
+    }
 }

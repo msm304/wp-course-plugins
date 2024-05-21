@@ -2,8 +2,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="dashboard-container dark-light">
             <div class="dashboard-container_header">
-                <div class="dashboard_fl_1">
+                <div class="dashboard_fl_1 d-flex justify-content-between align-center align-items-center">
                     <h6 class="c-bold font-primary-color">لیست دوره ها</h6>
+                    <a href="<?php echo site_url('dashboard/courses/add-course') ?>" class="v-btn v-btn-success">افزودن دوره جدید</a>
                 </div>
             </div>
             <div class="dashboard-container_body p-4">
@@ -28,7 +29,7 @@
                                         <img src="<?php echo $course->c_tumbnail ?>" alt="" class="img-fluid">
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <a href="<?php echo site_url($course->c_slug) ?>" class="mt-3 mb-2"><?php echo $course->c_title ?></a>
-                                            <a href="<?php echo site_url('dashboard/courses/edit/') . $course->id ?>" class="v-btn v-btn-primary">ویرایش</a>
+                                            <a href="<?php echo site_url('dashboard/courses/edit/') . $course->id ?>" class="v-btn v-btn-primary text-center">ویرایش</a>
                                         </div>
                                     </div>
                                 </div>
