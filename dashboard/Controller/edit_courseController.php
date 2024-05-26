@@ -5,10 +5,20 @@ class edit_courseController extends Handler
     public function index()
     {
         $course = new WCP_Dashboard_Courses();
+        $teacher = new WCP_Dashboard_Teacher();
+        $teachers = $teacher->find();
         $get_param = Helper::getUrlParam($_SERVER['REQUEST_URI']);
-        // var_dump($get_param);
+
+        $course_data = $course->findCourseById(intval($get_param));
+        // if ($course_data) {
+        //     $course_data = (array) $course_data; // تبدیل شیء به آرایه
+        // } else {
+        //     $course_data = []; // تنظیم آرایه خالی اگر داده‌ای موجود نبود
+        // }
+
         $params = [
-            'find_course_by_ID' => $course->findCourseById(intval($get_param))
+            'find_course_by_ID' => $course_data,
+            'teachers' => $teachers
         ];
         View::LoadView('View.EditCourseView', $params);
     }
@@ -30,32 +40,51 @@ class edit_courseController extends Handler
         // var_dump($_POST['c_title']);
         // $c_title = $_POST['c_title'];
         // $c_slug = $_POST['c_slug'];
+
         $data = [
             'course' => [
-                'c_title' => sanitize_text_field($_POST['c_title']),
-                'c_slug' => sanitize_text_field($_POST['c_slug']),
-                'c_tags' => sanitize_text_field($_POST['c_tags']),
-                'c_price' => sanitize_text_field($_POST['c_price']),
-                'c_thumbnail' => sanitize_text_field($_POST['c_thumbnail']),
-                'c_discount' => sanitize_text_field($_POST['c_discount']),
-                'c_type' => intval($_POST['c_type']),
-                'c_status' => intval($_POST['c_status']),
-                'c_demo' => sanitize_text_field($_POST['c_demo']),
-                'c_title_desc' => wp_kses($_POST['c_title_desc'], Helper::allowHtmlTag(), Helper::allowProtocols()),
-                'c_desc' => wp_kses($_POST['c_desc'], Helper::allowHtmlTag(), Helper::allowProtocols()),
+                'c_title' =>
+                isset($_POST['c_title']) ? sanitize_text_field($_POST['c_title']) : '',
+                'c_slug' =>
+                isset($_POST['c_slug']) ? sanitize_text_field($_POST['c_slug']) : '',
+                'c_tags' =>
+                isset($_POST['c_tags']) ? sanitize_text_field($_POST['c_tags']) : '',
+                'c_price' =>
+                isset($_POST['c_price']) ? sanitize_text_field($_POST['c_price']) : '',
+                'c_thumbnail'
+                => isset($_POST['c_thumbnail']) ? sanitize_text_field($_POST['c_thumbnail']) : '',
+                'c_discount' =>
+                isset($_POST['c_discount']) ? sanitize_text_field($_POST['c_discount']) : '',
+                'c_type' =>
+                isset($_POST['c_type']) ? intval($_POST['c_type']) : '',
+                'c_status' =>
+                isset($_POST['c_status']) ? intval($_POST['c_status']) : '',
+                'c_demo' =>
+                isset($_POST['c_demo']) ? sanitize_text_field($_POST['c_demo']) : '',
+                'c_title_desc' =>
+                isset($_POST['c_title_desc']) ? wp_kses($_POST['c_title_desc'], Helper::allowHtmlTag(), Helper::allowProtocols()) : '',
+                'c_desc'
+                => isset($_POST['c_desc']) ? wp_kses($_POST['c_desc'], Helper::allowHtmlTag(), Helper::allowProtocols()) : '',
             ],
             'course_meta' => [
-                'c_slug' => sanitize_text_field($_POST['c_slug']),
-                'c_level' => intval($_POST['c_level']),
-                'c_lang' => intval($_POST['c_lang']),
-                't_name' => sanitize_text_field($_POST['t_name']),
-                'c_student' => sanitize_text_field($_POST['c_student']),
-                'c_session' => sanitize_text_field($_POST['c_session']),
-                'c_duration' => sanitize_text_field($_POST['c_duration']),
+                'c_slug' =>
+                isset($_POST['c_slug']) ? sanitize_text_field($_POST['c_slug']) : '',
+                'c_level' =>
+                isset($_POST['c_level']) ? intval($_POST['c_level']) : '',
+                'c_lang' =>
+                isset($_POST['c_lang']) ? intval($_POST['c_lang']) : '',
+                't_name' =>
+                isset($_POST['t_name']) ? sanitize_text_field($_POST['t_name']) : '',
+                'c_student' =>
+                isset($_POST['c_student']) ? sanitize_text_field($_POST['c_student']) : '',
+                'c_session' =>
+                isset($_POST['c_session']) ? sanitize_text_field($_POST['c_session']) : '',
+                'c_duration' =>
+                isset($_POST['c_duration']) ? sanitize_text_field($_POST['c_duration']) : '',
             ]
         ];
         // var_dump($c_title, $c_slug);
-        $cid = intval($_POST['cid']);
+        $cid =  isset($_POST['cid']) ? intval($_POST['cid']) : '';
         $course = new WCP_Dashboard_Courses();
         $course->update($data, $cid);
     }

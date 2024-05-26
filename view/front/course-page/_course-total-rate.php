@@ -1,9 +1,9 @@
     <div class="rating-overview">
         <div class="rating-overview-box">
-            <span class="rating-overview-box-total"><?php echo ceil(rtrim($Comment->comment_rate_avg($slug), 0)) ?></span>
+            <span class="rating-overview-box-total"><?php echo rtrim(ceil($Comment->comment_rate_avg($slug))) ?></span>
             <span class="rating-overview-box-percent">از امتیاز 5</span>
-            <div class="listing-rating <?php echo ceil(rtrim($Comment->comment_rate_avg($slug), 0)) > 3 ? 'high' : 'mid' ?>" data-rating=" 5">
-                <?php echo $Comment->rating_star(ceil(rtrim($Comment->comment_rate_avg($slug), 0))) ?>
+            <div class="listing-rating <?php echo rtrim(ceil($Comment->comment_rate_avg($slug))) > 3 ? 'high' : 'mid' ?>">
+                <?php echo $Comment->rating_star(rtrim(ceil($Comment->comment_rate_avg($slug)))) ?>
             </div>
         </div>
 

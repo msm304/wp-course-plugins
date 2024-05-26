@@ -463,3 +463,7 @@ margin-right: auto;
 .border-b-gray-3{
     border-bottom: 3px solid #efefef;
 }
+
+jdp-container{
+    z-index: 9999 !important;
+}

@@ -9,6 +9,7 @@ function course_page()
     $slug = Helper::getSlug($_SERVER['REQUEST_URI']);
     $course = $Course->find_by_slug($slug);
     $course_meta = $Course->find_course_meta($slug);
+    // var_dump($course_meta);
     $course_references = $Course->find_references($slug);
 ?>
 

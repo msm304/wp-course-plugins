@@ -77,6 +77,7 @@
                         <div class="card blue position-relative">
                             <i class="ti-book position-absolute"></i>
                             <div class="title">کل دوره ها</div>
+                            <div class="value">۹۰<span class="font-primary-color">دوره</span></div>
                             <i class="zmdi zmdi-upload"></i>
                             <div class="value"></div>
                             <div class="stat"><b></b></div>
@@ -87,7 +88,7 @@
                             <i class="ti-user position-absolute"></i>
                             <div class="title">کل دانشجویان</div>
                             <i class="zmdi zmdi-upload"></i>
-                            <div class="value"><span class="font-primary-color">نفر</span></div>
+                            <div class="value">۴۵۳۲<span class="font-primary-color">نفر</span></div>
                             <div class="stat"><b></b></div>
                         </div>
                     </div>
@@ -97,7 +98,7 @@
                             <i class="ti-money position-absolute"></i>
                             <div class="title">میانگین فروش</div>
                             <i class="zmdi zmdi-download"></i>
-                            <div class="value"><span class="font-primary-color">تومان</span></div>
+                            <div class="value">۵۶۰۰۰۰۰۰<span class="font-primary-color">تومان</span></div>
                             <div class="stat"><b></b></div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@
                             <i class="ti-money position-absolute"></i>
                             <div class="title">کل فروش</div>
                             <i class="zmdi zmdi-download"></i>
-                            <div class="value"><span class="font-primary-color">تومان</span></div>
+                            <div class="value">۹۹۰۰۰۰۰۰<span class="font-primary-color">تومان</span></div>
                             <div class="stat"><b></b></div>
                         </div>
                     </div>

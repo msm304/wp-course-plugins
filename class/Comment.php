@@ -96,37 +96,74 @@ class Comment
     public function comment_rate_avg($c_slug)
     {
         $slug = sanitize_text_field($c_slug);
+        // var_dump($slug);
         $row_avg = $this->db->get_var($this->db->prepare("SELECT AVG(rate) FROM {$this->table} WHERE c_slug = %s", $slug));
+        // var_dump($row_avg);
         if ($row_avg) {
             return $row_avg;
         }
         return false;
     }
 
+    // public function comment_rate_by_percent($c_slug, $rate)
+    // {
+    //     $slug = sanitize_text_field($c_slug);
+    //     switch ($rate) {
+    //         case 1:
+    //             $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+    //             break;
+    //         case 2:
+    //             $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+    //             break;
+    //         case 3:
+    //             $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+    //             break;
+    //         case 4:
+    //             $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+    //             break;
+    //         case 5:
+    //             $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+    //             break;
+    //     }
+    //     $count_course_comment = $this->db->get_var($this->db->prepare("SELECT  COUNT(c_slug) FROM {$this->table} WHERE c_slug = %s", $slug));
+
+    //     return $count_rate / $count_course_comment * 100;
+    // }
+
     public function comment_rate_by_percent($c_slug, $rate)
     {
         $slug = sanitize_text_field($c_slug);
+        // $count_rate = 0; // مقداردهی اولیه به متغیر
+
         switch ($rate) {
             case 1:
-                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $slug, $rate));
                 break;
             case 2:
-                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $slug, $rate));
                 break;
             case 3:
-                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $slug, $rate));
                 break;
             case 4:
-                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $slug, $rate));
                 break;
             case 5:
-                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $c_slug, $rate));
+                $count_rate = $this->db->get_var($this->db->prepare("SELECT COUNT(rate) FROM {$this->table} WHERE c_slug = %s AND rate = %d", $slug, $rate));
                 break;
+            // default:
+                // return 0; // اگر امتیاز خارج از محدوده 1 تا 5 باشد
         }
-        $count_course_comment = $this->db->get_var($this->db->prepare("SELECT  COUNT(c_slug) FROM {$this->table} WHERE c_slug = %s", $slug));
 
-        return $count_rate / $count_course_comment * 100;
+        $count_course_comment = $this->db->get_var($this->db->prepare("SELECT COUNT(c_slug) FROM {$this->table} WHERE c_slug = %s", $slug));
+
+        if ($count_course_comment > 0) {
+            return ($count_rate / $count_course_comment) * 100;
+        }
+
+        // return 0; // در صورتی که هیچ نظری وجود نداشته باشد
     }
+
 
     public function add_student_comment()
     {

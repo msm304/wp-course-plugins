@@ -14,6 +14,7 @@ class WCP_Dashboard_Student
         add_action('wp_ajax_deleteStudent', [$this, 'deleteStudent']);
         add_action('wp_ajax_statusStudent', [$this, 'statusStudent']);
         add_action('wp_ajax_updateStudent', [$this, 'updateStudent']);
+        add_action('wp_ajax_addStudent', [$this, 'addStudent']);
     }
 
     public function find()
@@ -114,15 +115,64 @@ class WCP_Dashboard_Student
 
     public function searchStudent()
     {
-        if(empty($this->keyword)){
+        if (empty($this->keyword)) {
             return false;
         }
-        $stmt = $this->db->get_results($this->db->prepare("SELECT * FROM {$this->studentTable} WHERE email LIKE %s OR phone LIKE %s", '%' .$this->keyword. '%', '%' . $this->keyword . '%'));
+        $stmt = $this->db->get_results($this->db->prepare("SELECT * FROM {$this->studentTable} WHERE email LIKE %s OR phone LIKE %s", '%' . $this->keyword . '%', '%' . $this->keyword . '%'));
         // var_dump($stmt);
-        if($stmt){
+        if ($stmt) {
             return $stmt;
         }
         return false;
-
     }
+
+    // Add Student
+    public function addStudent()
+    {
+        if (isset($_POST['_nonce']) && !wp_verify_nonce($_POST['_nonce'])) {
+            die('access denied !!!');
+        }
+        $full_name = sanitize_text_field($_POST['full_name']);
+        $email = sanitize_text_field($_POST['email']);
+        $title = sanitize_text_field($_POST['title']);
+        $slug = sanitize_text_field($_POST['slug']);
+        $IdCourse = intval($_POST['IdCourse']);
+        $IdStudent = intval($_POST['IdStudent']);
+        $phone = sanitize_text_field($_POST['phone']);
+        $price = sanitize_text_field($_POST['price']);
+        $status = intval($_POST['status']);
+        foreach ($_POST as $field) {
+            if (empty($field)) {
+                wp_send_json([
+                    'error' => true,
+                    'message' => 'تکمیل تمامی فیلد ها الزامی است.'
+                ], 403);
+            }
+        }
+        $data = [
+            'full_name' => $full_name,
+            'email' => $email,
+            'c_title' => $title,
+            'c_slug' => $slug,
+            'c_id' => $IdCourse,
+            'user_id' => $IdStudent,
+            'phone' => $phone,
+            'price' => $price,
+            'status' => $status
+        ];
+        $format = ['%s', '%s', '%s', '%d', '%d', '%s', '%s', '%d'];
+        $stmt = $this->db->insert($this->studentTable, $data, $format);
+
+        if ($stmt) {
+            wp_send_json([
+                'success' => true,
+                'message' => 'دانشجو جدید ثبت شد.'
+            ], 200);
+        }
+        wp_send_json([
+            'error' => true,
+            'message' => 'خطایی در ثبت اطلاعات رخ داده است.'
+        ], 403);
+    }
+
 }

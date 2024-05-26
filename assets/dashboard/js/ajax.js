@@ -222,4 +222,127 @@ jQuery(document).ready(function ($) {
       },
     });
   });
+
+  // Add Student Ajax
+  $("form.student-add").submit(function (e) {
+    e.preventDefault();
+    let full_name = $("#newFullName").val();
+    let email = $("#newEmail").val();
+    let title = $("#inputTitle").val();
+    let slug = $("#newSlug").val();
+    let IdCourse = $("#inputIdCourse").val();
+    let IdStudent = $("#inputIdStudent").val();
+    let phone = $("#newPhone").val();
+    let price = $("#newPrice").val().replace(",", "");
+    let status = $("#newStatus").val();
+    $.ajax({
+      type: "POST",
+      url: wcp_ajax_dashboard.ajax_url,
+      data: {
+        action: "addStudent",
+        full_name: full_name,
+        email: email,
+        title: title,
+        slug: slug,
+        IdCourse: IdCourse,
+        IdStudent: IdStudent,
+        phone: phone,
+        price: price,
+        status: status,
+        _nonce: wcp_ajax_dashboard._nonce,
+      },
+      dataType: "JSON",
+      beforSend: function () {
+        $(".save-icon").show();
+      },
+      success: function (response) {
+        jQuery.toast({
+          text: response.message,
+          icon: "success",
+          loader: true, // Change it to false to disable loader
+          position: "top-left",
+          bgColor: "#2ecc71",
+          textColor: "white",
+          textAlign: "right",
+          loaderBg: "#202124", // To change the background
+          allowToastClose: false,
+        });
+      },
+      error: function (error) {
+        if (error) {
+          jQuery.toast({
+            text: error.responseJSON.message,
+            icon: "error",
+            loader: true, // Change it to false to disable loader
+            position: "top-left",
+            bgColor: "#da0b4e",
+            textColor: "white",
+            textAlign: "right",
+            loaderBg: "#202124", // To change the background
+            allowToastClose: false,
+          });
+        }
+      },
+      complete: function () {
+        $(".save-icon").hide();
+      },
+    });
+  });
+
+  // Delete Transaction Ajax
+  $(".wcp-delete-transaction").on("click", function (e) {
+    e.preventDefault();
+    let el = $(this);
+    // console.log(el);
+    let transactionId = el.data("transactionid");
+    // alert(transactionId);
+    // console.log(transactionId);
+    $.ajax({
+      type: "POST",
+      url: wcp_ajax_dashboard.ajax_url,
+      data: {
+        action: "deleteTransaction",
+        transactionId: transactionId,
+        _nonce: wcp_ajax_dashboard._nonce,
+      },
+      dataType: "JSON",
+      beforSend: function () {
+        el.find("i").removeClass("ti-trash").addClass("ti-reload loading-icon");
+      },
+      success: function (response) {
+        jQuery.toast({
+          text: response.message,
+          icon: "success",
+          loader: true, // Change it to false to disable loader
+          position: "top-left",
+          bgColor: "#2ecc71",
+          textColor: "white",
+          textAlign: "right",
+          loaderBg: "#202124", // To change the background
+          allowToastClose: false,
+        });
+        el.parents("tr").remove();
+      },
+      error: function (error) {
+        if (error) {
+          jQuery.toast({
+            text: error.responseJSON.message,
+            icon: "error",
+            loader: true, // Change it to false to disable loader
+            position: "top-left",
+            bgColor: "#da0b4e",
+            textColor: "white",
+            textAlign: "right",
+            loaderBg: "#202124", // To change the background
+            allowToastClose: false,
+          });
+        }
+      },
+      complete: function () {
+        el.find("i").removeClass("ti-reload loading-icon").addClass("ti-trash");
+      },
+    });
+  });
+
+  // Edit Transaction Ajax
 });

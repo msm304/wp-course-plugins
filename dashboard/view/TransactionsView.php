@@ -55,7 +55,8 @@
                                     <button class="mx-1 wcp-edit-student-button" type="button" data-bs-toggle="modal" title="ویرایش">
                                         <i class="ti-pencil-alt"></i>
                                     </button>
-                                    <a href="#" class="mx-1 wcp-delete-student" data-bs-toggle="tooltip" data-bs-placement="top" title="حذف"><i class="ti-trash"></i></a>
+
+                                    <a href="#" class="mx-1 wcp-delete-transaction" data-bs-toggle="tooltip" data-bs-placement="top" title="حذف" data-transactionid="<?php echo $transaction->id ?>"><i class="ti-trash"></i></a>
                                     <i class="ti-reload loading-icon"></i>
                                 </td>
                                 </td>

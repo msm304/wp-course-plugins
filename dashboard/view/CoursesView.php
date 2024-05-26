@@ -26,10 +26,10 @@
                                                 break;
                                         }
                                         ?>
-                                        <img src="<?php echo $course->c_tumbnail ?>" alt="" class="img-fluid">
+                                        <img src="<?php echo $course->c_thumbnail ?>" alt="" class="img-fluid">
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <a href="<?php echo site_url($course->c_slug) ?>" class="mt-3 mb-2"><?php echo $course->c_title ?></a>
-                                            <a href="<?php echo site_url('dashboard/courses/edit/') . $course->id ?>" class="v-btn v-btn-primary text-center">ویرایش</a>
+                                            <a href="<?php echo site_url('dashboard/courses/edit-course/') . $course->id ?>" class="v-btn v-btn-primary text-center">ویرایش</a>
                                         </div>
                                     </div>
                                 </div>

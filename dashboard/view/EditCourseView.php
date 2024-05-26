@@ -20,66 +20,78 @@
                         <div class="row">
                             <form action="" method="post">
                                 <div class="row">
-                                    <?php echo FlashMessage::showMsg() ?>
+                                    <?php if (isset($_POST['course_update'])) : ?>
+                                        <?php echo FlashMessage::showMsg() ?>
+                                    <?php endif; ?>
                                     <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">عنوان دوره</label>
-                                        <input name="c_title" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo 'test' ?>">
+                                        <input name="c_title" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($find_course_by_ID->c_title) ? $find_course_by_ID->c_title : ''; ?>">
                                     </div>
-                                    <div class="form-group col-md-6 mb-3">
+                                    <div class=" form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">شناسه دوره (slug)</label>
-                                        <input name="c_slug" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo $find_course_by_ID->c_slug ?>">
+                                        <input name="c_slug" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($find_course_by_ID->c_slug) ? $find_course_by_ID->c_slug : ''; ?>">
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">برچسب</label>
-                                        <input name="c_tags" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo $find_course_by_ID->c_tags ?>">
+                                        <input name="c_tags" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($find_course_by_ID->c_tags) ? $find_course_by_ID->c_tags : ''; ?>">
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">قیمت</label>
-                                        <input type="text" name="c_price" class="form-control form-control-dark font-primary-color" data-jdp value="<?php echo $find_course_by_ID->c_price ?>">
+                                        <input type="text" name="c_price" class="form-control form-control-dark font-primary-color" value="<?php echo isset($find_course_by_ID->c_price) ? $find_course_by_ID->c_price : ''; ?>">
                                     </div>
-                                    <div class="form-group col-md-6 mb-3">
+                                    <div class=" form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">تصویر دوره</label>
-                                        <input name="c_thumbnail" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo $find_course_by_ID->c_tumbnail ?>">
+                                        <input name="c_thumbnail" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($find_course_by_ID->c_thumbnail) ? $find_course_by_ID->c_thumbnail : ''; ?>">
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">دمو دوره</label>
-                                        <input name="c_demo" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo $find_course_by_ID->c_demo ?>">
+                                        <input name="c_demo" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($find_course_by_ID->c_demo) ? $find_course_by_ID->c_demo : ''; ?>">
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">تخفیف</label>
                                         <input name="c_discount" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo $find_course_by_ID->c_discount ?>">
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">نوع</label>
                                         <select name="c_type" class="form-select form-select-dark" aria-label="Default select example">
                                             <option value="0" <?php echo $find_course_by_ID->c_type == 0 ? 'selected' :  '' ?>>رایگان</option>
                                             <option value="1" <?php echo $find_course_by_ID->c_type == 1 ? 'selected' :  '' ?>>پولی</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">وضعیت</label>
                                         <select name="c_status" class="form-select form-select-dark" aria-label="Default select example">
                                             <option value="0" <?php echo $find_course_by_ID->c_status == 0 ? 'selected' :  '' ?>>فعال</option>
                                             <option value="1" <?php echo $find_course_by_ID->c_status == 1 ? 'selected' :  '' ?>>غیرفعال</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">سطح دوره</label>
                                         <select name="c_level" class="form-select form-select-dark" aria-label="Default select example">
                                             <option value="1" <?php echo $find_course_by_ID->c_level == 1 ? 'selected' :  '' ?>>مقدماتی</option>
                                             <option value="2" <?php echo $find_course_by_ID->c_level == 2 ? 'selected' :  '' ?>>پیشرفته</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">زبان دوره</label>
                                         <select name="c_lang" class="form-select form-select-dark" aria-label="Default select example">
                                             <option value="0" <?php echo $find_course_by_ID->c_lang == 0 ? 'selected' :  '' ?>>فارسی</option>
                                             <option value="1" <?php echo $find_course_by_ID->c_lang == 0 ? 'selected' :  '' ?>>انگلیسی</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6 mb-3">
+                                    <!-- <div class="form-group col-md-6 mb-3">
                                         <label class="font-primary-color mb-3">مدرس</label>
                                         <input name="t_name" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo $find_course_by_ID->t_name ?>">
+                                    </div> -->
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label class="font-primary-color mb-3">لیست مدرسین</label>
+                                        <?php if ($teachers) : ?>
+                                            <select name="t_name" class="form-select form-select-dark" aria-label="Default select example">
+                                                    <?php foreach ($teachers as $teacher) : ?>
+                                                    <option value="<?php echo $teacher->t_id ?>"><?php echo $teacher->t_fullname ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="form-group col-md-4 mb-3">
                                         <label class="font-primary-color mb-3">تعداد دانشجویان</label>

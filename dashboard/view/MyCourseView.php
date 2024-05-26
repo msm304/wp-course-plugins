@@ -25,7 +25,7 @@
                                                 break;
                                         }
                                         ?>
-                                        <img src="<?php echo $user_course->c_tumbnail ?>" alt="" class="img-fluid">
+                                        <img src="<?php echo $user_course->c_thumbnail ?>" alt="" class="img-fluid">
                                         <a href="<?php echo site_url($user_course->c_slug) ?>" class="mt-3 mb-2"><?php echo $user_course->c_title ?></a>
                                         <p><?php echo mb_substr($user_course->c_title_desc, '0', '200', 'UTF8') . '...' ?></p>
                                     </div>

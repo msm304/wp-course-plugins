@@ -4,6 +4,7 @@ class WCP_Dashboard_Courses
     private $db,
         $courseTable,
         $courseMetaTable;
+        public $course_result;
     public function __construct()
     {
         global $wpdb;
@@ -32,21 +33,14 @@ class WCP_Dashboard_Courses
 
     public function update($data, $cid)
     {
-        //       var_dump($data['course']);
-        // var_dump($data);
-        //       va1r_dump($data['course_meta']);
-        //   var_dump($cid);
-        // var_dump($data['course_meta']);
-        // مشکل از اینجاست
+
         $format_course = ['%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
-        // $format_title = ['%s'];
         $format_course_meta = ['%s', '%d', '%d', '%s', '%s', '%s', '%s'];
-        // مشکل از اینجاست
         $where = ['c_id' => $cid];
         $where_format = ['%d'];
 
         $course = $this->db->update($this->courseTable, $data['course'], $where, $format_course, $where_format);
-        // $course = $this->db->update($this->courseTable, $data, $where, $format_course, $where_format);
+        // var_dump($this->db->last_error);
         // var_dump($course);
         $course_meta = $this->db->update($this->courseMetaTable, $data['course_meta'], $where, $format_course_meta, $where_format);
         if ($course && $course_meta) {
@@ -59,10 +53,6 @@ class WCP_Dashboard_Courses
     public function add($data)
     {
         var_dump($data);
-        //       var_dump($data['course']);
-        //       var_dump($data['course_meta']);
-        //       var_dump($cid);
-        //        var_dump($data['course_meta']);
         $format_course = ['%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
         $format_course_meta = ['%d', '%s', '%d', '%d', '%s', '%s', '%s', '%s'];
 

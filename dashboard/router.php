@@ -11,24 +11,30 @@ class Router
     public function routes_handler()
     {
         $request_uri = $_SERVER['REQUEST_URI'];
-        /*     var_dump($request_uri);*/
+        //    var_dump('request_uri: ' . $request_uri);
         $request_uri = str_replace('-', '_', $request_uri);
         /* var_dump($request_uri);*/
         $this->dispatch_uri($request_uri);
     }
     private function parse_uri($uri)
     {
+        // var_dump('uri: '. $uri);
 
         $parse_uri = explode('/', strtok($uri, '?'));
         $last_part_uri = substr($uri, strrpos($uri, '/') + 1);
         // var_dump($last_part_uri);
         if (is_numeric($last_part_uri)) {
-                //    echo 'numeric';
+            //    echo 'numeric';
             $path = parse_url($uri, PHP_URL_PATH);
-            $parts = explode('/', $path);
-            /*  var_dump($parts);
-            var_dump($path);
-            var_dump([count($parts) - 1]);*/
+            // var_dump('PHP_URL_PATH: ' . PHP_URL_PATH);
+            // var_dump('parse_url($uri, 5): ' .  parse_url($uri, 5));
+            $modified_uri = preg_replace('#^/[^/]+#', '', $path);
+            // var_dump($modified_uri); // خروجی: /dashboard/courses/edit/2
+            $parts = explode('/', $modified_uri);
+            // var_dump($parts);
+            // var_dump('path: ' . $path);
+            // var_dump([count($parts)]);
+            // var_dump($parts[count($parts) - 2]);
             return $parts[count($parts) - 2];
         } else {
             return end($parse_uri);
