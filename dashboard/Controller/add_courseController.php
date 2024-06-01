@@ -24,6 +24,9 @@ class add_courseController extends Handler
             }
         }
 
+        $teacher_data = explode('|',isset($_POST['t_name']) ? sanitize_text_field($_POST['t_name']) : '',);
+        // var_dump($teacher_data);
+
         $data = [
             'course' => [
                 'c_title' =>
@@ -31,7 +34,7 @@ class add_courseController extends Handler
                 'c_id' =>
                 isset($_POST['c_id']) ? intval($_POST['c_id']) : '',
                 't_id' =>
-                isset($_POST['t_id']) ? intval($_POST['t_id']) : '',
+                isset($teacher_data[0]) ? intval($teacher_data[0]) : '',
                 'c_slug' =>
                 isset($_POST['c_slug']) ? sanitize_text_field($_POST['c_slug']) : '',
                 'c_tags' =>
@@ -63,7 +66,7 @@ class add_courseController extends Handler
                 'c_lang' =>
                 isset($_POST['c_lang']) ? intval($_POST['c_lang']) : '',
                 't_name' =>
-                isset($_POST['t_name']) ? sanitize_text_field($_POST['t_name']) : '',
+                isset($teacher_data[1]) ? sanitize_text_field($teacher_data[1]) : '',
                 'c_student' =>
                 isset($_POST['c_student']) ? sanitize_text_field($_POST['c_student']) : '',
                 'c_session' =>

@@ -11,10 +11,11 @@
                 <div class="submit-section">
                     <div class="row">
                         <?php
+                        // var_dump($courses);
                         if ($courses) :
                             foreach ($courses as $course) :
                         ?>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-sm-12 col-md-4 mb-4">
                                     <div class="wcp-course-wrapper position-relative">
                                         <?php
                                         switch ($course->c_type) {
@@ -29,7 +30,7 @@
                                         <img src="<?php echo $course->c_thumbnail ?>" alt="" class="img-fluid">
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <a href="<?php echo site_url($course->c_slug) ?>" class="mt-3 mb-2"><?php echo $course->c_title ?></a>
-                                            <a href="<?php echo site_url('dashboard/courses/edit-course/') . $course->id ?>" class="v-btn v-btn-primary text-center">ویرایش</a>
+                                            <a href="<?php echo site_url('dashboard/courses/edit-course/') . $course->c_id ?>" class="v-btn v-btn-primary text-center">ویرایش</a>
                                         </div>
                                     </div>
                                 </div>

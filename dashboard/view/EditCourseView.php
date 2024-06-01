@@ -87,10 +87,10 @@
                                         <label class="font-primary-color mb-3">لیست مدرسین</label>
                                         <?php if ($teachers) : ?>
                                             <select name="t_name" class="form-select form-select-dark" aria-label="Default select example">
-                                                    <?php foreach ($teachers as $teacher) : ?>
-                                                    <option value="<?php echo $teacher->t_id ?>"><?php echo $teacher->t_fullname ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
+                                                <?php foreach ($teachers as $teacher) : ?>
+                                                    <option value="<?php echo $teacher->t_id ?>|<?php echo $teacher->t_fullname ?>" <?php echo $find_course_by_ID->t_name == $teacher->t_fullname ? 'selected' :  '' ?>><?php echo $teacher->t_fullname ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         <?php endif; ?>
                                     </div>
                                     <div class="form-group col-md-4 mb-3">

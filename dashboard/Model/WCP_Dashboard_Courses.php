@@ -4,7 +4,7 @@ class WCP_Dashboard_Courses
     private $db,
         $courseTable,
         $courseMetaTable;
-        public $course_result;
+    public $course_result;
     public function __construct()
     {
         global $wpdb;
@@ -31,10 +31,19 @@ class WCP_Dashboard_Courses
         return false;
     }
 
+    public function findCoursesByName()
+    {
+        $stmt = $this->db->get_results("SELECT id, c_title FROM {$this->courseTable} ORDER BY c_id DESC");
+        if ($stmt) {
+            return $stmt;
+        }
+        return false;
+    }
+
     public function update($data, $cid)
     {
 
-        $format_course = ['%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
+        $format_course = ['%s', '%s', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
         $format_course_meta = ['%s', '%d', '%d', '%s', '%s', '%s', '%s'];
         $where = ['c_id' => $cid];
         $where_format = ['%d'];
@@ -52,7 +61,7 @@ class WCP_Dashboard_Courses
 
     public function add($data)
     {
-        var_dump($data);
+        // var_dump($data);
         $format_course = ['%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s'];
         $format_course_meta = ['%d', '%s', '%d', '%d', '%s', '%s', '%s', '%s'];
 

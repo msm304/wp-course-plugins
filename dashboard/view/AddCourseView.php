@@ -24,18 +24,16 @@
                                       <label class="font-primary-color mb-3">آیدی دوره</label>
                                       <input name="c_id" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($_POST['c_id']) ? $_POST['c_id'] : '' ?>">
                                   </div>
-                                  <!-- <div class="form-group col-md-6 mb-3">
-                                      <label class="font-primary-color mb-3">آیدی مدرس</label>
-                                      <input name="t_id" type="text" class="form-control form-control-dark font-primary-color" value="<?php echo isset($_POST['c_id']) ? $_POST['c_id'] : '' ?>">
-                                  </div> -->
                                   <div class="form-group col-md-6 mb-3">
                                       <label class="font-primary-color mb-3">لیست مدرسین</label>
                                       <?php if ($teachers) : ?>
                                           <select name="t_name" class="form-select form-select-dark" aria-label="Default select example">
                                               <?php foreach ($teachers as $teacher) : ?>
-                                                  <option value="<?php echo $teacher->t_id ?>"><?php echo $teacher->t_fullname ?></option>
+                                                  <option value="<?php echo $teacher->t_id ?>|<?php echo $teacher->t_fullname ?>"><?php echo $teacher->t_fullname ?></option>
                                               <?php endforeach; ?>
                                           </select>
+                                      <?php else : ?>
+                                          <option value="">تاکنون مدرسی ثبت نشده است</option>
                                       <?php endif; ?>
                                   </div>
                                   <div class="form-group col-md-6 mb-3">

@@ -40,13 +40,15 @@ class edit_courseController extends Handler
         // var_dump($_POST['c_title']);
         // $c_title = $_POST['c_title'];
         // $c_slug = $_POST['c_slug'];
-
+        $teacher_data = explode('|', isset($_POST['t_name']) ? sanitize_text_field($_POST['t_name']) : '',);
         $data = [
             'course' => [
                 'c_title' =>
                 isset($_POST['c_title']) ? sanitize_text_field($_POST['c_title']) : '',
                 'c_slug' =>
                 isset($_POST['c_slug']) ? sanitize_text_field($_POST['c_slug']) : '',
+                't_id' =>
+                isset($teacher_data[0]) ? intval($teacher_data[0]) : '',
                 'c_tags' =>
                 isset($_POST['c_tags']) ? sanitize_text_field($_POST['c_tags']) : '',
                 'c_price' =>
@@ -74,7 +76,7 @@ class edit_courseController extends Handler
                 'c_lang' =>
                 isset($_POST['c_lang']) ? intval($_POST['c_lang']) : '',
                 't_name' =>
-                isset($_POST['t_name']) ? sanitize_text_field($_POST['t_name']) : '',
+                isset($teacher_data[1]) ? sanitize_text_field($teacher_data[1]) : '',
                 'c_student' =>
                 isset($_POST['c_student']) ? sanitize_text_field($_POST['c_student']) : '',
                 'c_session' =>

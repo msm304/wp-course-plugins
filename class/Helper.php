@@ -235,4 +235,8 @@ class Helper
             'https' => array(),
         );
     }
+    public static function getUserDataBy($fielde, $value)
+    {
+        return get_user_by($fielde, $value);
+    }
 }
