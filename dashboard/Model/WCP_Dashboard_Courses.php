@@ -33,7 +33,7 @@ class WCP_Dashboard_Courses
 
     public function findCoursesByName()
     {
-        $stmt = $this->db->get_results("SELECT id, c_title FROM {$this->courseTable} ORDER BY c_id DESC");
+        $stmt = $this->db->get_results("SELECT id, c_title, c_slug, c_id FROM {$this->courseTable} ORDER BY c_id DESC");
         if ($stmt) {
             return $stmt;
         }

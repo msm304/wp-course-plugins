@@ -380,6 +380,8 @@ select.form-select-dark option {
     width: 22px;
     height: 22px;
     display: flex;
+    position: absolute;
+    left: 25px;
     background-position: center;
     background-size: 14px;
 }
@@ -429,7 +431,6 @@ select.form-select-dark option {
     background: #ccc9c9;
     width: 30px;
     height: 30px;
-
     color: #1b2431;
     border-radius: 50%;
 

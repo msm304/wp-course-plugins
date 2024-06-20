@@ -75,6 +75,7 @@ class WCP_Dashboard_Student
 
     public function updateStudent()
     {
+        var_dump($_POST);
         if (isset($_POST['_nonce']) && !wp_verify_nonce($_POST['_nonce'])) {
             die('access denied !!!');
         }

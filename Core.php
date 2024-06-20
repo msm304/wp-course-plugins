@@ -34,6 +34,7 @@ class WCPCore
     }
     private function init()
     {
+       
         include_once WCP_PLUGIN_DIR . 'class/AutoLoad.php';
         register_activation_hook(__FILE__, [$this, 'wp_wcp_activation']);
         register_deactivation_hook(__FILE__, [$this, 'wp_wcp_deactivation']);
@@ -169,3 +170,12 @@ new Course();
 new Comment();
 new WCP_User();
 new WCP_Dashboard_Student();
+
+require_once WCP_PLUGIN_DIR .'\dashboard\Controller\referencesController.php';
+
+function initialize_references_controller()
+{
+    $references_controller = new referencesController();
+}
+
+add_action('init', 'initialize_references_controller');

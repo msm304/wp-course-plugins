@@ -161,7 +161,8 @@ jQuery(document).ready(function ($) {
   $("form.student-edit").submit(function (e) {
     e.preventDefault();
     let el = $("#idRow");
-    let row_id = el.val();
+    let row_id = el.data("idrow");
+    alert(row_id);
     let full_name = $("#inputFullName").val();
     let email = $("#inputEmail").val();
     let title = $("#inputTitle").val();
@@ -345,4 +346,182 @@ jQuery(document).ready(function ($) {
   });
 
   // Edit Transaction Ajax
+
+  // Update References Ajax
+  $(".wcp-update-reference").on("click", function (e) {
+    e.preventDefault();
+    let el = $(this);
+    let id = el.data("id");
+    let r_number = el.parents("li").find(".r-number").text();
+    let title = el.parents("li").find(".r-title").text();
+    $.ajax({
+      type: "POST",
+      url: wcp_ajax_dashboard.ajax_url,
+      data: {
+        action: "updateReferenceAction",
+        id: id,
+        r_number: r_number,
+        title: title,
+        _nonce: wcp_ajax_dashboard._nonce,
+      },
+      dataType: "JSON",
+      beforeSend: function () {
+        el.find("i")
+          .removeClass("ti-pencil-alt")
+          .addClass("ti-reload loading-icon");
+      },
+      success: function (response) {
+        if (response.success) {
+          jQuery.toast({
+            text: response.message,
+            icon: "success",
+            loader: true, // Change it to false to disable loader
+            position: "top-left",
+            bgColor: "#2ed573",
+            textColor: "white",
+            textAlign: "right",
+            loaderBg: "#7bed9f", // To change the background
+            allowToastClose: false,
+          });
+        }
+      },
+      error: function (error) {
+        jQuery.toast({
+          /*    heading: 'خطا',*/
+          text: error.responseJSON.message,
+          icon: "error",
+          loader: true, // Change it to false to disable loader
+          position: "top-left",
+          bgColor: "#ff4757",
+          textColor: "white",
+          textAlign: "right",
+          loaderBg: "#ff6b81", // To change the background
+          allowToastClose: false,
+        });
+      },
+      complete: function () {
+        el.find("i")
+          .removeClass("ti-reload loading-icon")
+          .addClass("ti-pencil-alt");
+      },
+    });
+  });
+
+  // Add Reference Ajax
+  $("#wcp-add-new-reference").on("submit", function (e) {
+    e.preventDefault();
+    let course_id_slug = $(".course-id-slug").val();
+    let r_number = $(".reference-number").val();
+    let title = $(".reference-new-title").val();
+    $.ajax({
+      type: "POST",
+      url: wcp_ajax_dashboard.ajax_url,
+      data: {
+        action: "insertReferenceAction",
+        course_id_slug: course_id_slug,
+        r_number: r_number,
+        title: title,
+        _nonce: wcp_ajax_dashboard._nonce,
+      },
+      dataType: "JSON",
+      beforSend: function () {
+        $(".btn-submit-insert-reference")
+          .find("i")
+          .removeClass("'ti-plus")
+          .addClass("ti-reload loading-icon");
+      },
+      success: function (response) {
+        if (response.success) {
+          jQuery.toast({
+            text: response.message,
+            icon: "success",
+            loader: true, // Change it to false to disable loader
+            position: "top-left",
+            bgColor: "#2ed573",
+            textColor: "white",
+            textAlign: "right",
+            loaderBg: "#7bed9f", // To change the background
+            allowToastClose: false,
+          });
+        }
+        $(".reference-new-title").val("");
+        $(".reference-number").val(function (i, val) {
+          return val * 1 + 1;
+        });
+      },
+      error: function (error) {
+        if (error) {
+          jQuery.toast({
+            text: error.responseJSON.message,
+            icon: "error",
+            loader: true, // Change it to false to disable loader
+            position: "top-left",
+            bgColor: "#da0b4e",
+            textColor: "white",
+            textAlign: "right",
+            loaderBg: "#202124", // To change the background
+            allowToastClose: false,
+          });
+        }
+      },
+      complete: function () {
+        $(".btn-submit-insert-reference")
+          .find("i")
+          .removeClass("ti-reload loading-icon")
+          .addClass("ti-plus");
+      },
+    });
+  });
+
+  $(".wcp-get-course-references").on("change", function () {
+    let el = $(this);
+    let cid = el.val();
+    $(".refrences-list option").remove();
+    $.ajax({
+      url: wcp_ajax_dashboard.ajax_url,
+      type: "POST",
+      dataType: "JSON",
+      data: {
+        action: "getCoursesTitleAction",
+        cid: cid,
+        _nonce: wcp_ajax_dashboard._nonce,
+      },
+      beforeSend: function () {},
+      success: function (response) {
+        // console.log(response[1].title);
+        for (
+          var i = 0, keys = Object.keys(response), l = keys.length;
+          i < l;
+          i++
+        ) {
+          $(".refrences-list").append(
+            '<option value="' +
+              response[i].c_id +
+              "|" +
+              response[i].r_number +
+              "|" +
+              response[i].c_slug +
+              '">' +
+              response[i].title +
+              "</option>"
+          );
+        }
+      },
+      error: function (error) {
+        jQuery.toast({
+          /*    heading: 'خطا',*/
+          text: error.responseJSON.message,
+          icon: "error",
+          loader: true, // Change it to false to disable loader
+          position: "top-left",
+          bgColor: "#ff4757",
+          textColor: "white",
+          textAlign: "right",
+          loaderBg: "#ff6b81", // To change the background
+          allowToastClose: false,
+        });
+      },
+      complete: function () {},
+    });
+  });
 });

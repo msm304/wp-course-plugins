@@ -151,7 +151,8 @@ if (isset($_POST['wcp_search_submit'])) {
                                                     <div class="modal-body">
                                                         <form class="student-edit row g-3 justify-content-end text-end">
                                                             <div class="col-md-6">
-                                                                <input type="hidden" id="idRow" value="<?php echo $search_result->id ?>">
+
+                                                                <input type="hidden" id="idRow" data-idrow="<?php echo $search_result->id ?>" value="<?php echo $search_result->id ?>">
                                                                 <label for="inputFullName" class="form-label">نام و نام خانوادگی</label>
                                                                 <input type="text" class="form-control wcp-input-color" id="inputFullName" value="<?php echo $search_result->full_name ?>">
                                                             </div>

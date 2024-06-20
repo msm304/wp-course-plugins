@@ -239,4 +239,44 @@ class Helper
     {
         return get_user_by($fielde, $value);
     }
+    public static function countCourse()
+    {
+        global $wpdb;
+        $table = $wpdb->prefix . 'wcp_course';
+        $stmt = $wpdb->get_var("SELECT COUNT(id) FROM $table");
+        if ($stmt) {
+            return $stmt;
+        }
+        return '0';
+    }
+    public static function countStudent()
+    {
+        global $wpdb;
+        $table = $wpdb->prefix . 'wcp_course_students';
+        $stmt = $wpdb->get_var("SELECT COUNT(id) FROM $table");
+        if ($stmt) {
+            return $stmt;
+        }
+        return '0';
+    }
+    public static function aveSales()
+    {
+        global $wpdb;
+        $table = $wpdb->prefix . 'wcp_user_transactions';
+        $stmt = $wpdb->get_var("SELECT AVG(price) FROM $table WHERE status = 1");
+        if ($stmt) {
+            return $stmt;
+        }
+        return '0';
+    }
+    public static function totalSales()
+    {
+        global $wpdb;
+        $table = $wpdb->prefix . 'wcp_user_transactions';
+        $stmt = $wpdb->get_var("SELECT SUM(price) FROM $table WHERE status = 1");
+        if ($stmt) {
+            return $stmt;
+        }
+        return '0';
+    }
 }

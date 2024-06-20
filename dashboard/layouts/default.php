@@ -73,44 +73,46 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-<?php echo current_user_can('manage_options') ? '3' : '6' ?> mb-4">
                         <div class="card blue position-relative">
                             <i class="ti-book position-absolute"></i>
                             <div class="title">کل دوره ها</div>
-                            <div class="value">۹۰<span class="font-primary-color">دوره</span></div>
+                            <div class="value"><?php echo Helper::countCourse(); ?><span class="font-primary-color"> دوره</span></div>
                             <i class="zmdi zmdi-upload"></i>
                             <div class="value"></div>
                             <div class="stat"><b></b></div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-<?php echo current_user_can('manage_options') ? '3' : '6' ?> mb-4">
                         <div class="card green position-relative">
                             <i class="ti-user position-absolute"></i>
                             <div class="title">کل دانشجویان</div>
                             <i class="zmdi zmdi-upload"></i>
-                            <div class="value">۴۵۳۲<span class="font-primary-color">نفر</span></div>
+                            <div class="value"><?php echo Helper::countStudent(); ?><span class="font-primary-color"> نفر</span></div>
                             <div class="stat"><b></b></div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="card darkblue position-relative">
-                            <i class="ti-money position-absolute"></i>
-                            <div class="title">میانگین فروش</div>
-                            <i class="zmdi zmdi-download"></i>
-                            <div class="value">۵۶۰۰۰۰۰۰<span class="font-primary-color">تومان</span></div>
-                            <div class="stat"><b></b></div>
+                    <?php if (current_user_can('manage_options')) : ?>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                            <div class="card darkblue position-relative">
+                                <i class="ti-money position-absolute"></i>
+                                <div class="title">میانگین فروش</div>
+                                <i class="zmdi zmdi-download"></i>
+                                <div class="value"><?php echo number_format(Helper::aveSales()); ?><span class="font-primary-color"> تومان</span></div>
+                                <div class="stat"><b></b></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="card red position-relative ">
-                            <i class="ti-money position-absolute"></i>
-                            <div class="title">کل فروش</div>
-                            <i class="zmdi zmdi-download"></i>
-                            <div class="value">۹۹۰۰۰۰۰۰<span class="font-primary-color">تومان</span></div>
-                            <div class="stat"><b></b></div>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                            <div class="card red position-relative ">
+                                <i class="ti-money position-absolute"></i>
+                                <div class="title">کل فروش</div>
+                                <i class="zmdi zmdi-download"></i>
+                                <div class="value"><?php echo number_format(Helper::totalSales()); ?><span class="font-primary-color"> تومان</span></div>
+                                <div class="stat"><b></b></div>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
                 <?php include WCP_DASHBOARD_VIEW . $view; ?>
             </div>
