@@ -2,6 +2,11 @@
 
 class add_sessionController extends Handler
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
         $courses = new WCP_Dashboard_Courses();

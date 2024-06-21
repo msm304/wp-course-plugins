@@ -2,6 +2,10 @@
 
 class teachersController extends Handler
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function index()
     {

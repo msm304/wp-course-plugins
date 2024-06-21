@@ -2,7 +2,10 @@
 
 class transactionsController extends Handler
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+    }
     public function index()
     {
         $params = [];

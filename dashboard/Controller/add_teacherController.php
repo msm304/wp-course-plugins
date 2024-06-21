@@ -2,6 +2,11 @@
 
 class add_teacherController extends Handler
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
         $teachers = new WCP_Dashboard_Teacher();

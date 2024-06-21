@@ -34,29 +34,25 @@
                         <li class="nav-item py-1">
                             <a class="nav-link py-3" href="<?php echo site_url('dashboard/my-transactions') ?>"><i class="ti-credit-card"></i>پرداخت های من</a>
                         </li>
-                        <li class="nav-item py-1">
-                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/students') ?>"><i class="ti-user"></i>مدیریت دانشجویان</a>
-                        </li>
-                        <li class="nav-item py-1">
-                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/transactions') ?>"><i class="ti-money"></i>مدیریت تراکنش ها</a>
-                        </li>
-                        <li class="nav-item py-1">
-                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/courses') ?>"><i class="ti-book"></i>مدیریت دوره های آموزشی</a>
-                        </li>
-                        <li class="nav-item py-1">
-                            <a class="nav-link py-3" href="<?php echo site_url('dashboard/teachers') ?>"><i class="ti-user"></i>مدیریت مدرسین</a>
-                        </li>
-                        <li class="nav-item py-1">
-                            <a href="<?php echo site_url('dashboard/courses/references') ?>" class="nav-link py-3">
-                                <i class="ti-folder"></i>مدیریت جلسات آموزشی
-                            </a>
-                            <!-- <div class="collapse" id="session-collapse">
-                                <ul class="list-unstyled">
-                                    <li class="py-1 "><a href="" class="p-3"><i class="ti-plus"></i>سرفصل ها</a></li>
-                                    <li class="py-1"><a href="" class="p-3"><i class="ti-pencil-alt"></i> جلسات ویدیویی</a></li>
-                                </ul>
-                            </div> -->
-                        </li>
+                        <?php if (current_user_can('manage_options')) : ?>
+                            <li class="nav-item py-1">
+                                <a class="nav-link py-3" href="<?php echo site_url('dashboard/students') ?>"><i class="ti-user"></i>مدیریت دانشجویان</a>
+                            </li>
+                            <li class="nav-item py-1">
+                                <a class="nav-link py-3" href="<?php echo site_url('dashboard/transactions') ?>"><i class="ti-money"></i>مدیریت تراکنش ها</a>
+                            </li>
+                            <li class="nav-item py-1">
+                                <a class="nav-link py-3" href="<?php echo site_url('dashboard/courses') ?>"><i class="ti-book"></i>مدیریت دوره های آموزشی</a>
+                            </li>
+                            <li class="nav-item py-1">
+                                <a class="nav-link py-3" href="<?php echo site_url('dashboard/teachers') ?>"><i class="ti-user"></i>مدیریت مدرسین</a>
+                            </li>
+                            <li class="nav-item py-1">
+                                <a href="<?php echo site_url('dashboard/courses/references') ?>" class="nav-link py-3">
+                                    <i class="ti-folder"></i>مدیریت جلسات آموزشی
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </aside>
             </div>

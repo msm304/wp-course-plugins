@@ -10,6 +10,6 @@ class dashboardController extends Handler
         //     'user_courses' => $user_course->findUserCourse()
         // ];
         $current_user = wp_get_current_user();
-        View::LoadView('View.DashboardView',[]);
+        View::LoadView('View.DashboardView', []);
     }
 }

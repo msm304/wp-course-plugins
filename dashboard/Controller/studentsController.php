@@ -2,7 +2,10 @@
 
 class studentsController extends Handler
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+    }
     public function index()
     {
         $students = new WCP_Dashboard_Student();

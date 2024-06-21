@@ -2,6 +2,11 @@
 
 class my_TransactionsController extends Helper
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
         $user_transactions = new WCP_Dashboard_User(); 

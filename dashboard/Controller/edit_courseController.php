@@ -2,6 +2,11 @@
 
 class edit_courseController extends Handler
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
         $course = new WCP_Dashboard_Courses();

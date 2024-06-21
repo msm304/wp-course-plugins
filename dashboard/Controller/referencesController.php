@@ -4,6 +4,7 @@ class referencesController extends Handler
 {
     public function __construct()
     {
+        parent::__construct();
         add_action('wp_ajax_updateReferenceAction', [$this, 'updateReferenceAction']);
         add_action('wp_ajax_insertReferenceAction', [$this, 'insertReferenceAction']);
         add_action('wp_ajax_getCoursesTitleAction', [$this, 'getCoursesTitleAction']);
